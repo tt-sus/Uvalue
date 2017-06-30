@@ -1,0 +1,19 @@
+ body{
+    
+
+    }
+    .navbar-inverse {
+    background-color: #d83636;
+    border-color: none;
+    color:#fff;
+  }
+  .navbar-inverse .navbar-brand {
+      color: #fff;
+  }
+  .navbar-inverse .navbar-nav>li>a {
+      color: #fff;
+  }
+  .header-box{height:40px;padding:5px 25px;width:100%; border-bottom: 1px solid black; }
+.title-box{ margin-bottom: 10px;padding: 10px 20px 10px 20px; background-color: #d83636; color:#fff;}
+.title-box h3{font-size:14px;margin: 0;}
+.header-box h3{font-size:18px; color:#d83636;margin:0;}

@@ -1,0 +1,27 @@
+.add-layer button{
+    border-radius: 50%;
+}
+input[type=number] {
+    margin-bottom: 10px;
+}
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    margin: 0; 
+ 
+}
+.modal-body label{
+    font-size:14px;
+}
+.modal-body input[type=number]{
+    width:100%;
+}
+img{
+        height: 225px;
+}
+.error-msg{
+    font-size: 10px;
+    color:red;
+}

@@ -1,0 +1,88 @@
+<ng-template #content let-c="close" let-d="dismiss">
+  <div class="modal-header">
+    <h4 class="modal-title">Edit Attributes</h4>
+    <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+<form [formGroup]="inputsForm"> 
+  <div class="modal-body">
+    <p>Add or edit Fields</p>
+  
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="row">
+            <div class="col-6">
+                <label>Spacing</label>
+            </div>
+            <div class="col-6">
+            <input type="number" name="Spacing" formControlName="Spacing" class="form-control"  [(ngModel)]="Spacing" >
+            <p class="error-msg" *ngIf="inputsForm.controls.Spacing.errors.required &&
+                     inputsForm.controls.Spacing.dirty">
+                      This field is required!</p>
+            <p  class="error-msg" *ngIf=" inputsForm.controls.Spacing.dirty && inputsForm.get('Spacing').errors.validSpacing"> Spacing can only be 16 or 24 inches</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-6">
+                <label>Dlarge</label>
+            </div>
+            <div class="col-6">
+            <input type="number" name="DLarge" formControlName="DLarge" class="form-control" [(ngModel)]="DLarge" >
+            <p class="error-msg" *ngIf="inputsForm.controls.DLarge.errors.required &&
+                      inputsForm.controls.DLarge.dirty">d is required</p>
+            <p  class="error-msg" *ngIf=" inputsForm.controls.DLarge.dirty && inputsForm.get('DLarge').errors.validD"> Enter 3.5 or 4 or 6</p>
+
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-6">
+                <label>Cavity Insulation (R)</label>
+            </div>
+            <div class="col-6">
+            <input type="number" formControlName="CInsulation" name="CInsulation" [(ngModel)]="CInsulation" class="form-control">
+            <!--<p class="error-msg" *ngIf="inputsForm.controls.CInsulation.errors.required &&
+                      inputsForm.controls.CInsulation.dirty">insulation is required</p>-->
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-6">
+                <label>Length </label>
+            </div>
+            <div class="col-6">
+            <input type="number" name="Length"formControlName="Length" [(ngModel)]="Length" class="form-control">
+             <!--<p class="error-msg" *ngIf="inputsForm.controls.Length.errors.required &&
+                      inputsForm.controls.Length.dirty">Length is required</p>-->
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-6">
+                <label>Cavity Thickness</label>
+            </div>
+            <div class="col-6">
+            <input type="number" name="cavityThickness" formControlName="cavityThickness" [(ngModel)]="cavityThickness" class="form-control">
+            <!--<p class="error-msg" *ngIf="inputsForm.controls.cavityThickness.errors.required &&
+                      inputsForm.controls.cavityThickness.dirty">cavity thickness is required</p>-->
+            </div>
+        </div>
+        </div>
+        <div class="col-lg-4">
+            <img [src]="fullImagePath">
+        </div>
+        </div>
+    
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-secondary" (click)="c('Close click'); setValues()">Add</button>
+    <button type="button" class="btn btn-secondary" (click)="c('Close click')">Close</button>
+    
+  </div>
+</form>
+</ng-template>
+
+<div class="add-layer">
+<button class="btn btn-sm btn-outline-primary" (click)="open(content)">+</button> 
+
+</div>
+
+

@@ -1,0 +1,154 @@
+.Uinput input{
+    width:100%;
+    height: 30px;
+    margin-bottom:10px;
+}
+/*remove arrows on inputs*/
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    margin: 0; 
+ 
+}
+.legs{position:relative}
+.left{height:100px; width:20px;margin-left:0px; display:inline-block; background-color:black;position:relative; margin-left: 50px;}
+.right{height:100px; width:20px;margin-left:150px; display:inline-block;background-color:black}
+.top-1{
+     height:15px !important;
+    width:100%;
+    background-color:#ccc !important;
+}
+.top{
+    height:25px;
+    width:100%;
+    background-color:coral;
+    position: relative;
+    border-bottom:1px solid #fff;
+    cursor:pointer;
+}
+.edit{
+    border:2px solid #000;
+}
+.bottom{
+    height:15px;
+    width:100%;
+     background-color:coral;
+     margin-top: -5px;
+     border-top:1px solid #fff;
+     cursor:pointer;
+}
+.l-top-leg{
+    position:absolute;
+     height:20px;
+    width:80px;
+    background-color:black
+}
+.l-bottom-leg{
+    position:absolute;
+     height:20px;
+    width:80px;
+    background-color:black;
+    bottom:0;
+}
+.r-top-leg{
+    position:absolute;
+     height:20px;
+    width:80px;
+    background-color:black
+}
+.r-bottom-leg{
+    position:absolute;
+     height:20px;
+    width:80px;
+    background-color:black;
+    bottom:5px;
+}
+.bottom-hr {
+    margin-top: 20px;
+    margin-bottom: 20px;
+
+    position: absolute;
+    top: 10px;
+    color: black;
+    z-index: 99999;
+    width: 100%;
+    border: none;
+    border-top: 1px dotted #000;
+    color: #fff;
+  
+    height: 1px;
+}
+.top-hr {
+    margin-top: 10px;
+    margin-bottom: 20px;
+    position: absolute;
+    top: 10px;
+    color: black;
+    z-index: 99999;
+    width: 100%;
+    border: none;
+    border-top: 1px dotted #000;
+    color: #fff;
+    height: 1px;
+}
+.spacing-input{
+    width:10px;
+    height:1px;
+    background-color: black;
+    margin-top:10px;
+     margin-left: 10px;
+    display: inline-block;
+}
+.inside{display:inline-block;}
+.labels p:first-child{
+    margin-top:90px;
+    margin-left:-45px;
+}
+.labels p:last-child{
+    margin-left:-45px;
+}
+.box{
+  
+    margin-top:20px;
+}
+.inner-box{
+      border:1px solid #ccc;
+     
+}
+.image{
+    padding-left: 40px;
+    padding-right: 100px;
+}
+.materialInfoCover{
+    padding-right:90px;
+    padding-top: 100px;
+}
+.materialInfo{
+    background-color: #F7F7F7;
+        padding: 20px;
+}
+.result{
+    position: absolute;
+    top:90px;
+}
+.result h4{
+    font-size: 16px !important;
+}
+.result h3{
+    font-weight: normal;
+}
+.r-unit{
+    font-size:12px;
+}
+input[type=number]{
+    margin-bottom: 10px;
+}
+.settings{
+    background: #F7F7F7;
+    padding: 15px;
+}
+.settings-box{
+    padding-top: 80px;
+}

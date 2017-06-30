@@ -1,0 +1,54 @@
+<ng-template #content let-c="close" let-d="dismiss">
+  <div class="modal-header">
+    <h4 class="modal-title">Add Element (Inside)</h4>
+    <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <p>Select an element from the template or add new element by inputting its properties</p>
+    <div class="row">
+        <div class="col-4">
+            <label> From Template</label>
+        </div>
+        <div class="col-8">
+            <select class="form-control" id="layer">
+                <option>DCBA Insulation</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+            </select>
+        </div>
+    </div>
+    <h3>OR</h3>
+    <div class="row">
+        <div class="col-4">
+            <label> Thickness</label>
+        </div>
+        <div class="col-8">
+           <input type="number" [(ngModel)]="BThickness">
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-4">
+            <label> Resistivity</label>
+        </div>
+        <div class="col-8">
+           <input type="number" [(ngModel)]="BResistivity">
+        </div>
+    </div>
+
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-secondary" (click)="c('Close click'); passValues();">Add</button>
+    <button type="button" class="btn btn-secondary" (click)="c('Close click')">Close</button>
+    
+  </div>
+</ng-template>
+
+<div class="add-layer layer-B">
+<button class="btn btn-sm btn-outline-primary" (click)="open(content); layerType=='B'; say()" >+</button> 
+
+</div>
+
+

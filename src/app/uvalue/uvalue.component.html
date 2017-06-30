@@ -1,0 +1,420 @@
+
+<div class="row">
+<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+  <div class="row">
+    <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12"></div>
+    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+      <div class="result">
+      <h4>EFFECTIVE</h4>
+      <h3 *ngIf="showR">R VALUE</h3>
+      <h2 *ngIf="showR && !film">{{rWithoutFilm | number : '1.2-2'}} <span class="r-unit">W/m<sup>2</sup></span></h2>
+      <h2 *ngIf="showR && film">{{rWithFilm | number : '1.2-2'}} <span class="r-unit">W/m<sup>2</sup></span></h2>
+      <h3 *ngIf="!showR">U VALUE</h3>
+      <h2 *ngIf="!showR && !film">{{1/rWithoutFilm | number : '1.2-2'}} <span class="r-unit">m<sup>2</sup>/W</span></h2>
+      <h2 *ngIf="!showR && film">{{1/rWithFilm | number : '1.2-2'}} <span class="r-unit">m<sup>2</sup>/W</span></h2>
+      <p> With Air Film</p>
+      </div>
+    </div>
+    <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12"></div>
+  </div>
+
+  
+
+  <!--<table class="table">
+        <thead>
+          <tr>
+            <th></th>
+            <th>W/O Air Film R</th>
+            <th>W/Air Film R</th>
+          </tr>
+          <tr>
+            <td>Effective R</td>
+            <td>{{rWithoutFilm | number : '1.2-2'}}</td>
+            <td>{{rWithFilm | number : '1.2-2'}}</td>
+          </tr>   
+          <tr>
+            <td>Effective U</td>
+            <td>{{UWithoutFilm | number : '1.2-2'}}</td>
+            <td>{{UWithFilm | number : '1.2-2'}}</td>
+          </tr> 
+        </thead>
+    </table>-->
+</div>
+<div class="col-6 col-md-6 col-sm-12 col-xs-12">
+     <div class="row">
+      <div class="image col-lg-8">
+        <br>
+        <p>Outside</p>
+        <div class="top top-5" *ngIf="countUp>=4 && deleteA!==5"(click)="showA(4)"[ngClass]="{ 'edit': showAInfo == 4 }">  {{countUp}}</div>
+        <div class="top top-4" *ngIf="countUp>=3 && deleteA!==4"(click)="showA(3)"[ngClass]="{ 'edit': showAInfo == 3 }"> {{countUp}} </div>
+        <div class="top top-3" *ngIf="countUp>=2 && deleteA!==3"(click)="showA(2)"[ngClass]="{ 'edit': showAInfo == 2 }">  {{countUp}} </div>
+        <div class="top top-2" *ngIf="countUp>=1 && deleteA!==2"(click)="showA(1)" [ngClass]="{ 'edit': showAInfo == 1 }">  {{countUp}} </div>
+        <div class="top top-1" (click)="showA(0)"[ngClass]="{ 'edit': showAInfo == 0 }">
+         {{countUp}}
+        </div>
+        <div class="legs">
+          <div class="left" [style.height]="Dlarge*5+90+'px'">
+            <div class="l-top-leg" [style.width]="length*3 + 70 +'px'"></div>
+            <div class="l-bottom-leg"[style.width]="length*3 + 70 +'px'"></div>
+          </div>
+          <div class="right" [style.margin-left]="spacing<48? spacing*3 + 200 +'px':spacing"  [style.height]="Dlarge*5+90 +'px'">
+            <div class="r-top-leg"[style.width]="length*3 + 70 +'px'"></div>
+            <div class="r-bottom-leg"[style.width]="length*3 + 70 +'px'"></div>
+          </div>    
+        </div>                           
+        <div class="bottom" (click)="showB(1)" [ngClass]="{ 'edit': showBInfo == 1 }"></div>
+        <div class="bottom  bottom-1" *ngIf="countDown>1" (click)="showB(2)"[ngClass]="{ 'edit': showBInfo == 2 }"></div>
+        <div class="bottom bottom-2" *ngIf="countDown>2"(click)="showB(3)"[ngClass]="{ 'edit': showBInfo == 3 }"></div>
+        <div class="bottom bottom-3" *ngIf="countDown>3"(click)="showB(4)"[ngClass]="{ 'edit': showBInfo == 4 }"></div>
+        <p class="inside">  Inside </p>
+        <div class="spacing-input"[style.width]="spacing*5 + 180 +'px'">
+        <p [style.margin-left]="spacing*3 + 30 +'px'">Spacing-{{spacing}} inches</p>
+        </div>
+    
+      </div>
+      <div class=" labels col-lg-4"> 
+        <app-modal (passLayer)="layer($event)"></app-modal>
+         <spacing-modal (passData)="getData($event)"></spacing-modal>
+         <modal-B  (passLayer)="layer($event)"  [style.top]="Dlarge*5+90+'px'"></modal-B>
+        
+      </div>
+    </div>
+</div>
+</div>
+<div class="row">
+  
+
+<div class="col-lg-6 col-md-6 box">
+  <div class="row">
+    <div class="col-lg-4">
+
+    </div>
+     <div class="col-lg-6 settings-box">
+       <div class="settings">
+    <div class="row">
+      <div class="col-lg-6">
+       <label> Output :</label>
+      </div>
+      <div class="col-lg-6">
+       <switchR (statusChange)="toggleRtoU($event)"></switchR>
+      </div>
+       <div class="col-lg-6">
+       <label> Air Film:</label>
+      </div>
+      <div class="col-lg-6">
+       <switchF (statusChange)="toggleFilm($event)" ></switchF>
+      </div>
+       <div class="col-lg-6">
+       <label> Units:</label>
+      </div>
+      <div class="col-lg-6">
+       <switchU (statusChange)="toggleUnit($event)" ></switchU>
+      </div>
+    </div>
+  </div>
+    </div>
+    <div class="col-lg-2">
+
+    </div>
+  </div>
+
+ 
+   
+  <!--<div class="inner-box">
+    <div class="title-box">
+    <h3>Inputs</h3>
+    </div>
+      <div class= "col-lg-6 col-md-6 Uinput" >
+        <label for="spacing">Spacing</label>
+        <input type="number" placeholder="Spacing"  [(ngModel)]="spacing" (keyup)="calculate()" min="1" max="48">
+      </div>
+      <div class="col-lg-6 col-md-6 Uinput">
+        <label for="spacing">Length</label>
+        <input type="number" placeholder="Length"  [(ngModel)]="length"  (keyup)="calculate()">
+      </div>-->
+      <!--<div class= "col-lg-6 col-md-6 Uinput">
+        <label for="spacing">Dsmall</label>
+        <input type="number" placeholder="Dsmall"  [(ngModel)]="Dsmall"  (keyup)="calculate()">
+      </div>-->
+      <!--<div class="col-lg-6 col-md-6 Uinput">
+        <label for="spacing">Dlarge</label>
+        <input type="number" placeholder="Dlarge"  [(ngModel)]="Dlarge"  (keyup)="calculate()">
+      </div>
+      <div class="col-lg-6 col-md-6 Uinput">
+        <label for="spacing">Thickness</label>
+        <input type="number" placeholder="Thickness"  [(ngModel)]="thickness" (keyup)="calculate()">
+      </div>
+      <div class="clearfix"></div>
+    </div>-->
+</div>
+
+<div class="col-lg-6">
+  <div class="col-lg-8 materialInfoCover">
+    <div class="materialInfo" *ngIf="showAInfo==0">
+       <h4> Element Attributes</h4>
+      <div class="row">
+        <div class="col-lg-6">
+          <label>Element Position: </label>
+        </div>
+        <div class="col-lg-6">
+          <p>A (Outside)</p>
+        </div>
+        <div class="col-lg-6">
+          <label>Thickness </label>
+        </div>
+        <div class="col-lg-6">
+          <p><input type="number" [(ngModel)]="CTE" (keyup)="calculate()"></p>
+        </div>
+        <div class="col-lg-6">
+          <label>Resistivity </label>
+        </div>
+        <div class="col-lg-6">
+          <p><input type="number" [(ngModel)]="CRE" (keyup)="calculate()"></p>
+        </div>
+      </div>
+    </div>
+    <div class="materialInfo" *ngIf="showAInfo==1">
+       <h4> Element Attributes</h4>
+      <div class="row">
+        <div class="col-lg-6">
+          <label>Element Position: </label>
+        </div>
+        <div class="col-lg-6">
+          <p>A (Outside) layer1</p>
+        </div>
+        <div class="col-lg-6">
+          <label>Thickness </label>
+        </div>
+        <div class="col-lg-6">
+          <p><input type="number" [(ngModel)]="CTA1" (keyup)="calculate()"></p>
+        </div>
+        <div class="col-lg-6">
+          <label>Resistivity </label>
+        </div>
+        <div class="col-lg-6">
+          <p><input type="number" [(ngModel)]="CRA1" (keyup)="calculate()"></p>
+        </div>
+        <div class="col-lg-6">
+          {{countUp}}
+          <button (click)="deleteALayer(2)" *ngIf="countUp<2">Delete Layer</button>
+      </div>
+      </div>
+    </div>
+    <div class="materialInfo" *ngIf="showAInfo==2">
+       <h4> Element Attributes</h4>
+      <div class="row">
+      <div class="col-lg-6">
+        <label>Element Position: </label>
+      </div>
+      <div class="col-lg-6">
+        <p>A (Outside)layer2 </p>
+      </div>
+      <div class="col-lg-6">
+        <label>Thickness </label>
+      </div>
+      <div class="col-lg-6">
+        <p><input type="number" [(ngModel)]="CTA2" (keyup)="calculate()"></p>
+      </div>
+      <div class="col-lg-6">
+          <label>Resistivity </label>
+        </div>
+        <div class="col-lg-6">
+          <p><input type="number" [(ngModel)]="CRA2" (keyup)="calculate()"></p>
+        </div>
+      <div class="col-lg-6">
+          <button (click)="deleteALayer(3)" *ngIf="countUp<3">Delete Layer</button>
+      </div>
+      </div>
+    </div>
+    <div class="materialInfo" *ngIf="showAInfo==3">
+       <h4> Element Attributes</h4>
+      <div class="row">
+        <div class="col-lg-6">
+          <label>Element Position: </label>
+        </div>
+        <div class="col-lg-6">
+          <p>A (Outside) layer3</p>
+        </div>
+        <div class="col-lg-6">
+          <label>Thickness </label>
+        </div>
+        <div class="col-lg-6">
+          <p><input type="number" [(ngModel)]="CTA3" (keyup)="calculate()"></p>
+        </div>
+        <div class="col-lg-6">
+          <label>Resistivity </label>
+        </div>
+        <div class="col-lg-6">
+          <p><input type="number" [(ngModel)]="CRA3" (keyup)="calculate()"></p>
+        </div>
+        <div class="col-lg-6">
+          <button (click)="deleteALayer(4)" *ngIf="countUp<5">Delete Layer</button>
+      </div>
+      </div>
+    </div>
+    <div class="materialInfo" *ngIf="showAInfo==4">
+       <h4> Element Attributes</h4>
+      <div class="row">
+        <div class="col-lg-6">
+          <label>Element Position: </label>
+        </div>
+        <div class="col-lg-6">
+          <p>A (Outside) layer4</p>
+        </div>
+        <div class="col-lg-6">
+          <label>Thickness </label>
+        </div>
+        <div class="col-lg-6">
+          <p><input type="number" [(ngModel)]="CTA4" (keyup)="calculate()"></p>
+        </div>
+        <div class="col-lg-6">
+          <label>Resistivity </label>
+        </div>
+        <div class="col-lg-6">
+          <p><input type="number" [(ngModel)]="CRA4" (keyup)="calculate()"></p>
+        </div>
+        <div class="col-lg-6">
+          <button (click)="deleteALayer(5)" *ngIf="countUp<6">Delete Layer</button>
+      </div>
+      </div>
+    </div>
+     <div class="materialInfo" *ngIf="showAInfo==5">
+       <h4> Element Attributes</h4>
+      <div class="row">
+        <div class="col-lg-6">
+          <label>Element Position: </label>
+        </div>
+        <div class="col-lg-6">
+          <p>A (Outside) unknown</p>
+        </div>
+        <div class="col-lg-6">
+          <label>Thickness </label>
+        </div>
+        <div class="col-lg-6">
+          <p><input type="number" [(ngModel)]="CTA4" (keyup)="calculate()"></p>
+        </div>
+        <div class="col-lg-6">
+          <label>Resistivity </label>
+        </div>
+        <div class="col-lg-6">
+          <p><input type="number" [(ngModel)]="CRA4" (keyup)="calculate()"></p>
+        </div>
+        <div class="col-lg-6">
+          <button (click)="deleteALayer(4)" *ngIf="countUp<5">Delete Layer</button>
+      </div>
+      </div>
+    </div>
+    <div class="materialInfo" *ngIf="showBInfo==1">
+       <h4> Element Attributes</h4>
+      <div class="row">
+        <div class="col-lg-6">
+          <label>Element Position: </label>
+        </div>
+        <div class="col-lg-6">
+          <p>B (Inside)</p>
+        </div>
+        <div class="col-lg-6">
+          <label>Thickness </label>
+        </div>
+        <div class="col-lg-6">
+        <p><input type="number" [(ngModel)]="CTB1" (keyup)="calculate()"></p>
+        </div>
+        <div class="col-lg-6">
+          <label>Resistivity </label>
+        </div>
+        <div class="col-lg-6">
+          <p><input type="number" [(ngModel)]="CRB1" (keyup)="calculate()"></p>
+        </div>
+        
+      </div> 
+    </div>
+    <div class="materialInfo" *ngIf="showBInfo==2">
+       <h4> Element Attributes</h4>
+      <div class="row">
+        <div class="col-lg-6">
+          <label>Element Position: </label>
+        </div>
+        <div class="col-lg-6">
+          <p>B (Inside)</p>
+        </div>
+        <div class="col-lg-6">
+          <label>Thickness </label>
+        </div>
+        <div class="col-lg-6">
+        <p><input type="number" [(ngModel)]="CTB2" (keyup)="calculate()"></p>
+        </div>
+          <div class="col-lg-6">
+          <label>Resistivity </label>
+        </div>
+        <div class="col-lg-6">
+          <p><input type="number" [(ngModel)]="CRB2" (keyup)="calculate()"></p>
+        </div>
+         <div class="col-lg-6">
+          <button (click)="deleteBLayer(2)" *ngIf="countDown<3">Delete Layer</button>
+      </div>
+      </div>
+    </div>
+    <div class="materialInfo" *ngIf="showBInfo==3">
+       <h4> Element Attributes</h4>
+      <div class="row">
+        <div class="col-lg-6">
+          <label>Element Position: </label>
+        </div>
+        <div class="col-lg-6">
+          <p>B (Inside)</p>
+        </div>
+        <div class="col-lg-6">
+          <label>Thickness </label>
+        </div>
+        <div class="col-lg-6">
+        <p><input type="number" [(ngModel)]="CTB3" (keyup)="calculate()"></p>
+        </div>
+        <div class="col-lg-6">
+          <label>Resistivity </label>
+        </div>
+        <div class="col-lg-6">
+          <p><input type="number" [(ngModel)]="CRB3" (keyup)="calculate()"></p>
+        </div>
+          <div class="col-lg-6">
+          <button (click)="deleteBLayer(3)" *ngIf="countDown<4">Delete Layer</button>
+      </div>
+        
+      </div>
+    </div>
+    <div class="materialInfo" *ngIf="showBInfo==4">
+       <h4> Element Attributes</h4>
+      <div class="row">
+        <div class="col-lg-6">
+          <label>Element Position: </label>
+        </div>
+        <div class="col-lg-6">
+          <p>B (Inside)</p>
+        </div>
+        <div class="col-lg-6">
+          <label>Thickness </label>
+        </div>
+        <div class="col-lg-6">
+          <p><input type="number" [(ngModel)]="CTB4" (keyup)="calculate()"></p>
+        </div>
+        <div class="col-lg-6">
+          <label>Resistivity </label>
+        </div>
+        <div class="col-lg-6">
+          <p><input type="number" [(ngModel)]="CRB4" (keyup)="calculate()"></p>
+        </div>
+         <div class="col-lg-6">
+          <button (click)="deleteBLayer(4)" *ngIf="countDown<5">Delete Layer</button>
+      </div>
+      </div>
+    </div>
+  </div>  
+</div>
+</div>
+
+
+
+    
+  
+
+   
+    
