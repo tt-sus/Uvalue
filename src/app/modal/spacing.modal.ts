@@ -39,13 +39,13 @@ inputsForm:FormGroup;
 
 selectedInput:string;
 Spacing:number; 
-DLarge:number; Length:number;CInsulation:number;cavityThickness:number;
+DLarge:number; Length:number;CInsulation:number;cavityThickness:number; studThickness:number;
 
 @Output()
 passData:EventEmitter<Object> = new EventEmitter();
 
 setValues(){
-    this.passData.emit({Spacing:this.Spacing,DLarge:this.DLarge,Insulation:this.CInsulation,Length:this.Length,cavityThick:this.cavityThickness})
+    this.passData.emit({Spacing:this.Spacing,DLarge:this.DLarge,Insulation:this.CInsulation,Length:this.Length,cavityThick:this.cavityThickness,studThick:this.studThickness})
 }
  checkSpacing(control:FormControl){
 
@@ -68,8 +68,11 @@ this.inputsForm=this.fb.group({
   Spacing: [this.Spacing, [Validators.required,this.checkSpacing]],
   DLarge:[this.DLarge,[Validators.required,this.checkDLarge]],
   CInsulation:[this.CInsulation,[Validators.required]],
+  cavityThickness:[this.cavityThickness,[Validators.required]],
+  studThickness:[this.studThickness,[Validators.required]],
   Length:[this.Length,[Validators.required]],
-  cavityThickness:[this.cavityThickness,[Validators.required]]
+  
+  
 })
 }
 }

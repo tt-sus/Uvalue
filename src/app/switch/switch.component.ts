@@ -55,7 +55,7 @@ import {
   transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
   background-color:#fff;
   width: 190px;
-  margin-bottom:10px;
+  margin-bottom:25px;
 }
 .bootstrap-switch .bootstrap-switch-container {
   display: inline-block;

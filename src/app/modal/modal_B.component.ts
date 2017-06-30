@@ -1,11 +1,12 @@
 import { Component, Output, EventEmitter } from '@angular/core';
 import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
+import { RValueService } from '../Services/RValueService';
 
 @Component({
     selector:'modal-B',
-    templateUrl: './modal_B.component.html',
-     styles: [`
-     .layer-B{position:absolute; bottom:55px;}
+    templateUrl: './modal.component.html',
+      styles: [`
+     .add-layer{position:absolute; bottom:55px;}
       input[type=number]{
       margin-bottom: 10px;
       }
@@ -25,9 +26,12 @@ import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
 
 export class Modal_BComponent{
   closeResult: string;
-
-  constructor(private modalService: NgbModal) {}
-
+  rValues:any;
+  constructor(private modalService: NgbModal,private rValueService:RValueService) {
+      this.rValues=this.rValueService.getData();
+      console.log(this.rValues)
+  }
+  selectedValue:number;
   open(content) {
     this.modalService.open(content).result.then((result) => {
       this.closeResult = `Closed with: ${result}`;
@@ -45,8 +49,9 @@ export class Modal_BComponent{
       return  `with: ${reason}`;
     }
   }
-  BThickness:number;
-  BResistivity
+  selected:boolean=false;
+  AThickness:number;
+  AResistivity:number;
   @Output()
   passLayer:EventEmitter<Object> = new EventEmitter();
   @Output()
@@ -55,8 +60,23 @@ export class Modal_BComponent{
   addMaterial:EventEmitter<number> = new EventEmitter();
 
   passValues(){
-  this.passLayer.emit({layer:'B', thickness:this.BThickness, Resistivity:this.BResistivity});  
+    if(this.selectedValue){
+    this.passLayer.emit({layer:'B', thickness:this.AThickness,Resistivity:this.selectedValue});  
+    this.addMaterial.emit();
 
+  }
+    else{
+      this.passLayer.emit({layer:'B', thickness:this.AThickness,Resistivity:this.AResistivity});  
+      this.addMaterial.emit();
+    }
+    this.selected=false;
+    this.selectedValue=null;
+  
+  }
+   toNumber(){
+    this.selectedValue = +this.selectedValue;
+    console.log(this.selectedValue);
+    this.selected=true
   }
 
 }

@@ -148,6 +148,7 @@ input[type=number]{
 .settings{
     background: #F7F7F7;
     padding: 15px;
+    height: 226px;
 }
 .settings-box{
     padding-top: 80px;

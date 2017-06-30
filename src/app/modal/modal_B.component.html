@@ -12,32 +12,28 @@
             <label> From Template</label>
         </div>
         <div class="col-8">
-            <select class="form-control" id="layer">
-                <option>DCBA Insulation</option>
-                <option>2</option>
-                <option>3</option>
-                <option>4</option>
+            <select [(ngModel)]="selectedValue"(ngModelChange)="toNumber()">
+                <option *ngFor="let layer of rValues" [ngValue]="layer.rvalue">{{layer.Material}}</option>
             </select>
         </div>
     </div>
-    <h3>OR</h3>
+    <h3 *ngIf="!selected">OR</h3>
     <div class="row">
         <div class="col-4">
             <label> Thickness</label>
         </div>
         <div class="col-8">
-           <input type="number" [(ngModel)]="BThickness">
+           <input type="number" [(ngModel)]="AThickness">
         </div>
     </div>
-    <div class="row">
+    <div class="row" *ngIf="!selected">
         <div class="col-4">
             <label> Resistivity</label>
         </div>
         <div class="col-8">
-           <input type="number" [(ngModel)]="BResistivity">
+           <input type="number" [(ngModel)]="AResistivity">
         </div>
     </div>
-
   </div>
   <div class="modal-footer">
     <button type="button" class="btn btn-secondary" (click)="c('Close click'); passValues();">Add</button>
@@ -47,7 +43,7 @@
 </ng-template>
 
 <div class="add-layer layer-B">
-<button class="btn btn-sm btn-outline-primary" (click)="open(content); layerType=='B'; say()" >+</button> 
+<button class="btn btn-sm btn-outline-primary" (click)="open(content)" >+</button> 
 
 </div>
 

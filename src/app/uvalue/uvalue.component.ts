@@ -165,6 +165,7 @@ RSheathingFinal:number
     this.CTC=message.cavityThick;
     this.Dlarge=message.DLarge;
     this.CRC=message.Insulation;
+    this.CTS=message.studThick;
     this.calculate();
   }
   toggleRtoU(){
@@ -267,6 +268,14 @@ RSheathingFinal:number
     this.rWithFilm= this.rWithoutFilm+0.68+0.17;
     this.UWithoutFilm=1/this.rWithoutFilm;
     this.UWithFilm=1/this.rWithFilm;
+    alert(`
+    dlarge= ${this.Dlarge}
+    spacing=${this.spacing}
+    CTA= ${this.CTC}
+    CRC= ${this.CRC}
+    length=${this.length}
+    stud thickness= ${ this.CTS}
+    `)
   }
   ngOnInit() {
     this.calculate()
