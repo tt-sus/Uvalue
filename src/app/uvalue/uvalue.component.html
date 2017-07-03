@@ -1,4 +1,4 @@
-
+<!--start- result and visualization-->
 <div class="row">
 <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
   <div class="row">
@@ -12,33 +12,12 @@
       <h3 *ngIf="!showR">U VALUE</h3>
       <h2 *ngIf="!showR && !film">{{1/rWithoutFilm | number : '1.2-2'}} <span class="r-unit">m<sup>2</sup>/W</span></h2>
       <h2 *ngIf="!showR && film">{{1/rWithFilm | number : '1.2-2'}} <span class="r-unit">m<sup>2</sup>/W</span></h2>
-      <p> With Air Film</p>
+      <p *ngIf="film"> With Air Film</p>
+      <p *ngIf="!film"> Without Air Film</p>
       </div>
     </div>
     <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12"></div>
   </div>
-
-  
-
-  <!--<table class="table">
-        <thead>
-          <tr>
-            <th></th>
-            <th>W/O Air Film R</th>
-            <th>W/Air Film R</th>
-          </tr>
-          <tr>
-            <td>Effective R</td>
-            <td>{{rWithoutFilm | number : '1.2-2'}}</td>
-            <td>{{rWithFilm | number : '1.2-2'}}</td>
-          </tr>   
-          <tr>
-            <td>Effective U</td>
-            <td>{{UWithoutFilm | number : '1.2-2'}}</td>
-            <td>{{UWithFilm | number : '1.2-2'}}</td>
-          </tr> 
-        </thead>
-    </table>-->
 </div>
 <div class="col-6 col-md-6 col-sm-12 col-xs-12">
      <div class="row">
@@ -73,7 +52,7 @@
     
       </div>
       <div class=" labels col-lg-4"> 
-        <app-modal (passLayer)="layer($event)"></app-modal>
+        <app-modal (passLayer)="layer($event)" [count]="countUp"></app-modal>
          <spacing-modal (passData)="getData($event)"></spacing-modal>
          <modal-B  (passLayer)="layer($event)"  [style.top]="Dlarge*5+90+'px'"></modal-B>
         
@@ -81,74 +60,43 @@
     </div>
 </div>
 </div>
+<!--end- result and visualization-->
+<!--start-settings-->
 <div class="row">
-  
-
-<div class="col-lg-6 col-md-6 box">
-  <div class="row">
-    <div class="col-lg-4">
-
-    </div>
-     <div class="col-lg-6 settings-box">
-       <div class="settings">
-         <h4> Settings</h4>
+  <div class="col-lg-6 col-md-6 box">
     <div class="row">
-      <div class="col-lg-6">
-       <label> Output :</label>
+      <div class="col-lg-4">
       </div>
-      <div class="col-lg-6">
-       <switchR (statusChange)="toggleRtoU($event)"></switchR>
+      <div class="col-lg-6 settings-box">
+          <div class="settings">
+            <h4> Settings</h4>
+            <div class="row">
+              <div class="col-lg-6">
+              <label> Output :</label>
+              </div>
+              <div class="col-lg-6">
+              <switchR (statusChange)="toggleRtoU($event)"></switchR>
+              </div>
+              <div class="col-lg-6">
+              <label> Air Film:</label>
+              </div>
+              <div class="col-lg-6">
+              <switchF (statusChange)="toggleFilm($event)" ></switchF>
+              </div>
+              <div class="col-lg-6">
+              <label> Units:</label>
+              </div>
+              <div class="col-lg-6">
+              <switchU (statusChange)="toggleUnit($event)" ></switchU>
+              </div>
+          </div>
+        </div>
       </div>
-       <div class="col-lg-6">
-       <label> Air Film:</label>
-      </div>
-      <div class="col-lg-6">
-       <switchF (statusChange)="toggleFilm($event)" ></switchF>
-      </div>
-       <div class="col-lg-6">
-       <label> Units:</label>
-      </div>
-      <div class="col-lg-6">
-       <switchU (statusChange)="toggleUnit($event)" ></switchU>
-      </div>
+      <div class="col-lg-2"></div>
     </div>
   </div>
-    </div>
-    <div class="col-lg-2">
-
-    </div>
-  </div>
-
- 
-   
-  <!--<div class="inner-box">
-    <div class="title-box">
-    <h3>Inputs</h3>
-    </div>
-      <div class= "col-lg-6 col-md-6 Uinput" >
-        <label for="spacing">Spacing</label>
-        <input type="number" placeholder="Spacing"  [(ngModel)]="spacing" (keyup)="calculate()" min="1" max="48">
-      </div>
-      <div class="col-lg-6 col-md-6 Uinput">
-        <label for="spacing">Length</label>
-        <input type="number" placeholder="Length"  [(ngModel)]="length"  (keyup)="calculate()">
-      </div>-->
-      <!--<div class= "col-lg-6 col-md-6 Uinput">
-        <label for="spacing">Dsmall</label>
-        <input type="number" placeholder="Dsmall"  [(ngModel)]="Dsmall"  (keyup)="calculate()">
-      </div>-->
-      <!--<div class="col-lg-6 col-md-6 Uinput">
-        <label for="spacing">Dlarge</label>
-        <input type="number" placeholder="Dlarge"  [(ngModel)]="Dlarge"  (keyup)="calculate()">
-      </div>
-      <div class="col-lg-6 col-md-6 Uinput">
-        <label for="spacing">Thickness</label>
-        <input type="number" placeholder="Thickness"  [(ngModel)]="thickness" (keyup)="calculate()">
-      </div>
-      <div class="clearfix"></div>
-    </div>-->
-</div>
-
+<!--end-settings-->
+<!--start material info-settings-->
 <div class="col-lg-6">
   <div class="col-lg-8 materialInfoCover">
     <div class="materialInfo" *ngIf="showAInfo==0">
@@ -181,7 +129,11 @@
           <label>Element Position: </label>
         </div>
         <div class="col-lg-6">
-          <p>A (Outside) layer1</p>
+          <p>A (Outside)  </p>
+        </div>
+        <div class="clearfix"></div>
+        <div class="col-lg-12">
+              <h4>{{layerA1}}</h4>
         </div>
         <div class="col-lg-6">
           <label>Thickness </label>
@@ -210,6 +162,10 @@
       <div class="col-lg-6">
         <p>A (Outside)layer2 </p>
       </div>
+      <div class="clearfix"></div>
+     <div class="col-lg-12">
+          <h4>{{layerA2}}</h4>
+     </div>
       <div class="col-lg-6">
         <label>Thickness </label>
       </div>
@@ -235,6 +191,10 @@
         </div>
         <div class="col-lg-6">
           <p>A (Outside) layer3</p>
+        </div>
+         <div class="clearfix"></div>
+        <div class="col-lg-12">
+              <h4>{{layerA3}}</h4>
         </div>
         <div class="col-lg-6">
           <label>Thickness </label>
@@ -262,6 +222,7 @@
         <div class="col-lg-6">
           <p>A (Outside) layer4</p>
         </div>
+        <h4>{{layerA4}}</h4>
         <div class="col-lg-6">
           <label>Thickness </label>
         </div>
@@ -287,6 +248,10 @@
         </div>
         <div class="col-lg-6">
           <p>A (Outside) unknown</p>
+        </div>
+         <div class="clearfix"></div>
+        <div class="col-lg-12">
+              <h4>{{layerType}}</h4>
         </div>
         <div class="col-lg-6">
           <label>Thickness </label>
@@ -338,6 +303,10 @@
         <div class="col-lg-6">
           <p>B (Inside)</p>
         </div>
+         <div class="clearfix"></div>
+        <div class="col-lg-12">
+              <h4>{{layerB1}}</h4>
+        </div>
         <div class="col-lg-6">
           <label>Thickness </label>
         </div>
@@ -363,6 +332,10 @@
         </div>
         <div class="col-lg-6">
           <p>B (Inside)</p>
+        </div>
+         <div class="clearfix"></div>
+        <div class="col-lg-12">
+              <h4>{{layerB2}}</h4>
         </div>
         <div class="col-lg-6">
           <label>Thickness </label>
@@ -391,6 +364,10 @@
         <div class="col-lg-6">
           <p>B (Inside)</p>
         </div>
+         <div class="clearfix"></div>
+        <div class="col-lg-12">
+              <h4>{{layerB3}}</h4>
+        </div>
         <div class="col-lg-6">
           <label>Thickness </label>
         </div>
@@ -410,6 +387,7 @@
     </div>
   </div>  
 </div>
+<!--end material info-settings-->
 </div>
 
 

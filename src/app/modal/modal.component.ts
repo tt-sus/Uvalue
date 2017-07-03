@@ -1,4 +1,4 @@
-import { Component, Output, EventEmitter } from '@angular/core';
+import { Component, Output, EventEmitter, Input } from '@angular/core';
 import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
 import { RValueService } from '../Services/RValueService';
 
@@ -9,6 +9,8 @@ import { RValueService } from '../Services/RValueService';
 })
 
 export class ModalComponent{
+  @Input()
+  count:number=1;
   closeResult: string;
   rValues:any;
   constructor(private modalService: NgbModal,private rValueService:RValueService) {
@@ -36,31 +38,42 @@ export class ModalComponent{
   selected:boolean=false;
   AThickness:number;
   AResistivity:number;
+  layerName:string;
   @Output()
   passLayer:EventEmitter<Object> = new EventEmitter();
   @Output()
-  passThickness:EventEmitter<number> = new EventEmitter();
-  @Output()
   addMaterial:EventEmitter<number> = new EventEmitter();
-
+  
+getName(){
+  alert("yo")
+}
   passValues(){
+      this.count++;
     if(this.selectedValue){
     this.passLayer.emit({layer:'A', thickness:this.AThickness,Resistivity:this.selectedValue});  
     this.addMaterial.emit();
 
   }
     else{
-      this.passLayer.emit({layer:'A', thickness:this.AThickness,Resistivity:this.AResistivity});  
+      this.passLayer.emit({layer:'A', thickness:this.AThickness,Resistivity:this.AResistivity,name:this.layerName});  
       this.addMaterial.emit();
     }
     this.selected=false;
     this.selectedValue=null;
   
   }
-   toNumber(){
+  reset(){
+       this.selected=false;
+    this.selectedValue=null;
+    alert()
+  
+  }
+   toNumber(layer){
+      alert(layer)
     this.selectedValue = +this.selectedValue;
     console.log(this.selectedValue);
     this.selected=true
+  
   }
 
 }

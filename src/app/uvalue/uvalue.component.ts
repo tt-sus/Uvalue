@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { UValueService } from '../Services/Uvalue.service';
 // import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 // import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
@@ -13,14 +13,15 @@ export class UValueComponent implements OnInit {
   lookUp:any;
   constructor(private uValueService:UValueService) {
     this.lookUp=uValueService.getData()
-   }
+  }
 
 
-   layerType:string;
+  layerType:string="";
    //display material info
   showlayer:number=1;
   // layercounters
-  countUp:number=0; countDown:number=1;
+  countUp:number=0; 
+  countDown:number=1;
   //user inputs
   CMA1=0; CTA1=0; CRA1=0;
   CMA2=0; CTA2=0; CRA2=0;
@@ -38,79 +39,84 @@ export class UValueComponent implements OnInit {
   //internal inputs
   A; w; zf;Ra; Rb; 
   R1ins;R2ins;R1met;R2met;
-  R1;R2; Ercav; Erw
+  R1;R2; Ercav; Erw;RSheathingFinal:number
   //outputs
   rWithoutFilm: number;
   rWithFilm:number;
   UWithFilm: number;
   UWithoutFilm: number;
-  value:string;
 
+  //layer names:
+  layerA1:string;  layerA2:string;
+  layerA3:string;  layerA4:string;
+  layerB1:string;  layerB2:string;
+  layerB3:string;  layerB4:string;
+//function for adding layer through modals
   layer(message:any){
+ 
     if(message.layer=='A'){
-       this.countUp++;
-      
-      
-      this.deleteA=null;
-     if(this.countUp==1){
-       alert('called 1')
-        this.CTA1=message.thickness;
-        this.CRA1=message.Resistivity;
-         alert(this.CTA1 + "and "+ this.CRA1)
-      }
-       if(this.countUp==2){
-          alert('called2')
-        this.CTA2=message.thickness;
-        this.CRA2=message.Resistivity;
-        alert(this.CTA2 + "and "+ this.CRA2)
-      }
-       if(this.countUp==3){
-          alert('called 3')
-        this.CTA3=message.thickness;
-       this.CRA3=message.Resistivity;
-       alert(this.CTA3 + "and "+ this.CRA3)
-      }
-       if(this.countUp==4){
-        this.CTA4=message.thickness;
-       this.CRA4=message.Resistivity;
-        alert(this.CTA4 + "and "+ this.CRA4)
-      }
+    this.countUp++;
+    this.deleteA=null;
+    if(this.countUp==1){
+      alert('called 1')
+      this.CTA1=message.thickness;
+      this.CRA1=message.Resistivity;
+      this.layerA1=message.name;
+       alert(this.CTA1 + "and "+ this.CRA1)
+    }
+    if(this.countUp==2){
+      alert('called2')
+      this.CTA2=message.thickness;
+      this.CRA2=message.Resistivity;
+       this.layerA2=message.name;
+      alert(this.CTA2 + "and "+ this.CRA2)
+    }
+    if(this.countUp==3){
+      alert('called 3')
+      this.CTA3=message.thickness;
+      this.CRA3=message.Resistivity;
+       this.layerA3=message.name;
+      alert(this.CTA3 + "and "+ this.CRA3)
+    }
+    if(this.countUp==4){
+      this.CTA4=message.thickness;
+      this.CRA4=message.Resistivity;
+       this.layerA4=message.name;
+      alert(this.CTA4 + "and "+ this.CRA4)
+    }
      
     }
-
-       if(message.layer=='B'){
-             alert("B added")
-         this.countDown++;
-         this.deleteB=null;
-        if(this.countDown==2){
+   if(message.layer=='B'){
+      alert("B added")
+      this.countDown++;
+      this.deleteB=null;
+      if(this.countDown==2){
         this.CTB2=message.thickness;
         this.CRB2=message.Resistivity;
+        this.layerB1=message.name
       }
-       if(this.countDown==3){
+      if(this.countDown==3){
         this.CTB3=message.thickness;
         this.CRB3=message.Resistivity;
+        this.layerB2=message.name
       }
        if(this.countDown==4){
         this.CTB4=message.thickness;
         this.CRB4=message.Resistivity;
+        this.layerB3=message.name
       }
-       
     }
-   
    this.calculate()
   }
-  
-  
-  //layer count for ngIf
-
+  //layer count for showing added layers
 showAInfo:number;
 showBInfo:number
    //edit layer
-  showA(n){
+showA(n){
   this.showAInfo=n;
   this.showBInfo=null;
 }   
-  showB(n){
+showB(n){
   this.showBInfo=n;
   this.showAInfo=null;
 } 
@@ -136,7 +142,6 @@ if(n==5){
 }
 this.calculate();
 }
-
 deleteBLayer(n){
 this.deleteB=n;
 this.showBInfo--;
@@ -153,13 +158,10 @@ if(n==4){
   this.CTB4=0; this.CRB4=0;
   alert(n)
 }
-
 this.calculate();
 }
-RSheathingFinal:number
 //get the spacing data
   getData(message:any){
-
     this.spacing=message.Spacing;
     this.length=message.Length;
     this.CTC=message.cavityThick;
@@ -168,15 +170,13 @@ RSheathingFinal:number
     this.CTS=message.studThick;
     this.calculate();
   }
+  //switch functionality
   toggleRtoU(){
     this.showR=!this.showR;
   }
     toggleFilm(){
-
     this.film=!this.film;
   }
-
-
 // calculation for r value
    calculate(){
     alert("calulcate called")
@@ -189,11 +189,8 @@ RSheathingFinal:number
       CRE=${this.CRE}
       CRc=${this.CRC}
       `)
-
-      
    //calculation for Rsheathing
      if(RSheathing<0.4){
-       
         this.RSheathingFinal=10; 
        console.log( 'rsheathing is'+ this.RSheathingFinal)
      }
@@ -215,7 +212,6 @@ RSheathingFinal:number
        }      
      }
      
-    
      this.Dsmall= this.Dlarge-2*this.CTS;
      this.w=0;
      //internal calculations
@@ -260,7 +256,7 @@ RSheathingFinal:number
       this.Erw=this.Ra+this.Rb+this.R1 + (2*this.R2);
       console.log(`Erw is ${this.Erw}`);
       //calculation for dsmall
-        
+      
       //outputs
      this.rWithoutFilm= this.Ercav*this.Erw*this.spacing/(this.w*(this.Ercav-this.Erw)+(this.spacing*this.Erw))
     console.log(`rWithoutFilm is ${this.rWithoutFilm} `)

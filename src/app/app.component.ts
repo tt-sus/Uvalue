@@ -22,4 +22,9 @@ menuState:string = 'out';
   toggleMenu() {
      this.menuState = this.menuState === 'out' ? 'in' : 'out';
   }
+  closeSlider(){
+    if(this.menuState=='in'){
+      this.toggleMenu();
+    }
+  }
 }

@@ -26,7 +26,7 @@ import { RValueService } from '../Services/RValueService';
 
 export class Modal_BComponent{
   closeResult: string;
-  rValues:any;
+  rValues:any;  layerName:string;
   constructor(private modalService: NgbModal,private rValueService:RValueService) {
       this.rValues=this.rValueService.getData();
       console.log(this.rValues)
@@ -63,20 +63,22 @@ export class Modal_BComponent{
     if(this.selectedValue){
     this.passLayer.emit({layer:'B', thickness:this.AThickness,Resistivity:this.selectedValue});  
     this.addMaterial.emit();
-
   }
     else{
-      this.passLayer.emit({layer:'B', thickness:this.AThickness,Resistivity:this.AResistivity});  
+      this.passLayer.emit({layer:'B', thickness:this.AThickness,Resistivity:this.AResistivity,name:this.layerName});  
       this.addMaterial.emit();
     }
     this.selected=false;
     this.selectedValue=null;
   
   }
+  reset(){
+     this.selected=false;
+    this.selectedValue=null;
+  }
    toNumber(){
     this.selectedValue = +this.selectedValue;
     console.log(this.selectedValue);
     this.selected=true
   }
-
 }
