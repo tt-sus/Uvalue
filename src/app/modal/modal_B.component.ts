@@ -21,6 +21,14 @@ import { RValueService } from '../Services/RValueService';
 .add-layer button{
     border-radius: 50%;
 }
+@media only screen and (max-width: 770px){
+    .add-layer{
+    margin-top:10px;
+    bottom:0px;
+     margin-bottom: 30px;
+    position:relative;
+}
+ }
      `]
 })
 

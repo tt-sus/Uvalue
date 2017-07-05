@@ -35,7 +35,7 @@ export class UValueComponent implements OnInit {
   CMS=0;  CTS=0.023;  CRS=0.25;
   CMC=0;  CTC=6;  CRC=3.5;
   spacing:number=16; length:number=2.5; Dsmall:number=5.95; Dlarge:number=6;
-  thickness:number=0.023; showLayerInfo:boolean; showR:boolean=true; film:boolean=false
+  thickness:number=0.023; showLayerInfo:boolean; showR:boolean=true; film:boolean=true
   //internal inputs
   A; w; zf;Ra; Rb; 
   R1ins;R2ins;R1met;R2met;
@@ -52,7 +52,11 @@ export class UValueComponent implements OnInit {
   layerB1:string;  layerB2:string;
   layerB3:string;  layerB4:string;
 //function for adding layer through modals
-  layer(message:any){
+  spacingModal:boolean;
+  modalOpen()
+{
+  this.spacingModal=true;
+}  layer(message:any){
  
     if(message.layer=='A'){
     this.countUp++;
@@ -109,6 +113,10 @@ export class UValueComponent implements OnInit {
    this.calculate()
   }
   //layer count for showing added layers
+  onSelectionChange(entry) {
+    // clone the object for immutability
+   alert("yes")
+  }
 showAInfo:number;
 showBInfo:number
    //edit layer

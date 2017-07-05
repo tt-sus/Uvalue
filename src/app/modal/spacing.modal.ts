@@ -1,4 +1,4 @@
-import { Component, Output, EventEmitter, OnInit } from '@angular/core';
+import { Component, Output, EventEmitter, OnInit, Input } from '@angular/core';
 import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
 import { FormGroup, FormBuilder, FormControl, Validators,AbstractControl } from '@angular/forms';
 import { RValueService } from '../Services/RValueService';
@@ -40,6 +40,8 @@ selectedInput:string;
 Spacing:number; 
 DLarge:number; Length:number;CInsulation:number;cavityThickness:number; studThickness:number;
 
+@Input()
+openMod:boolean;
 
 @Output()
 passData:EventEmitter<Object> = new EventEmitter();

@@ -1,10 +1,10 @@
 <!--start- result and visualization-->
 <div class="row">
-<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+<div class="col-lg-6 col-md-4 col-sm-12 col-xs-12">
   <div class="row">
-    <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12"></div>
+    <div class="col-lg-2 col-md-4 col-sm-12 col-xs-12"></div>
     <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-      <div class="result">
+      <div class="result hidden-sm-down">
       <h4>EFFECTIVE</h4>
       <h3 *ngIf="showR">R VALUE</h3>
       <h2 *ngIf="showR && !film">{{rWithoutFilm | number : '1.2-2'}} <span class="r-unit">W/m<sup>2</sup></span></h2>
@@ -14,14 +14,20 @@
       <h2 *ngIf="!showR && film">{{1/rWithFilm | number : '1.2-2'}} <span class="r-unit">m<sup>2</sup>/W</span></h2>
       <p *ngIf="film"> With Air Film</p>
       <p *ngIf="!film"> Without Air Film</p>
+ 
       </div>
+     
     </div>
-    <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12"></div>
+   
+    <div class="col-lg-4 col-md-2 col-sm-12 col-xs-12"> </div>
+  
   </div>
+ 
 </div>
-<div class="col-6 col-md-6 col-sm-12 col-xs-12">
+
+<div class="col-lg-6 col-md-8 col-sm-12 col-xs-12">
      <div class="row">
-      <div class="image col-lg-8">
+      <div class="image col-lg-10">
         <br>
         <p>Outside</p>
         <div class="top top-5" *ngIf="countUp>=4 && deleteA!==5"(click)="showA(4)"[ngClass]="{ 'edit': showAInfo == 4 }">  {{countUp}}</div>
@@ -36,7 +42,7 @@
             <div class="l-top-leg" [style.width]="length*3 + 70 +'px'"></div>
             <div class="l-bottom-leg"[style.width]="length*3 + 70 +'px'"></div>
           </div>
-          <div class="right" [style.margin-left]="spacing<48? spacing*3 + 200 +'px':spacing"  [style.height]="Dlarge*5+90 +'px'">
+          <div class="right" [style.margin-left]="spacing<48? spacing*3 + 180 +'px':spacing"  [style.height]="Dlarge*5+90 +'px'">
             <div class="r-top-leg"[style.width]="length*3 + 70 +'px'"></div>
             <div class="r-bottom-leg"[style.width]="length*3 + 70 +'px'"></div>
           </div>    
@@ -46,49 +52,87 @@
         <div class="bottom bottom-2" *ngIf="countDown>2"(click)="showB(3)"[ngClass]="{ 'edit': showBInfo == 3 }"></div>
         <div class="bottom bottom-3" *ngIf="countDown>3"(click)="showB(4)"[ngClass]="{ 'edit': showBInfo == 4 }"></div>
         <p class="inside">  Inside </p>
-        <div class="spacing-input"[style.width]="spacing*5 + 180 +'px'">
-        <p [style.margin-left]="spacing*3 + 30 +'px'">Spacing-{{spacing}} inches</p>
-        </div>
+        <!--<div class="spacing-input"[style.width]="spacing*5 + 90 +'px'">
+        <p [style.margin-left]="spacing*3 + 20 +'px'">{{spacing}}"</p>
+        </div>-->
     
       </div>
-      <div class=" labels col-lg-4"> 
+      <div class=" labels col-lg-2 hidden-md-down"> 
         <app-modal (passLayer)="layer($event)" [count]="countUp"></app-modal>
-         <spacing-modal (passData)="getData($event)"></spacing-modal>
+         <spacing-modal (passData)="getData($event)"[openMod]="spacingModal"></spacing-modal>
          <modal-B  (passLayer)="layer($event)"  [style.top]="Dlarge*5+90+'px'"></modal-B>
         
       </div>
     </div>
 </div>
 </div>
+<div class="  col-lg-12 col-md-12 col-sm-12 col-xs-12 hidden-md-up"> 
+    <div class="row">
+      <div class="col-md-4 col-sm-4 modal-layer">
+        <app-modal (passLayer)="layer($event)" [count]="countUp"></app-modal>
+        <p>Add Layer (Outside)</p>
+      </div>
+       <div class="col-md-4 col-sm-4 modal-layer">
+         <spacing-modal (passData)="getData($event)"[openMod]="spacingModal"></spacing-modal>
+         <p>Edit Stud</p>
+       </div>
+       <div class="col-md-4 col-sm-4 modal-layer">
+         <modal-B  (passLayer)="layer($event)"  ></modal-B>
+         <p>Add Layer (Inside)</p>
+       </div>
+    </div>
+ </div>
+<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 hidden-md-up"> 
+     <div class="result result-sm">
+      <h4>EFFECTIVE</h4>
+      <h3 *ngIf="showR">R VALUE</h3>
+      <h2 *ngIf="showR && !film">{{rWithoutFilm | number : '1.2-2'}} <span class="r-unit">W/m<sup>2</sup></span></h2>
+      <h2 *ngIf="showR && film">{{rWithFilm | number : '1.2-2'}} <span class="r-unit">W/m<sup>2</sup></span></h2>
+      <h3 *ngIf="!showR">U VALUE</h3>
+      <h2 *ngIf="!showR && !film">{{1/rWithoutFilm | number : '1.2-2'}} <span class="r-unit">m<sup>2</sup>/W</span></h2>
+      <h2 *ngIf="!showR && film">{{1/rWithFilm | number : '1.2-2'}} <span class="r-unit">m<sup>2</sup>/W</span></h2>
+      <p *ngIf="film"> With Air Film</p>
+      <p *ngIf="!film"> Without Air Film</p>
+      </div>
+  </div>
 <!--end- result and visualization-->
 <!--start-settings-->
 <div class="row">
-  <div class="col-lg-6 col-md-6 box">
+  <div class="col-lg-6 col-md-12 box">
     <div class="row">
-      <div class="col-lg-4">
+      <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12">
       </div>
-      <div class="col-lg-6 settings-box">
+      <div class="col-lg-8 col-md-12 col-sm-12 col-xs-12 settings-box">
           <div class="settings">
             <h4> Settings</h4>
             <div class="row">
-              <div class="col-lg-6">
+              <div class="col-lg-4 col-md-12 col-sm-12 col-xs-12">
               <label> Output :</label>
               </div>
-              <div class="col-lg-6">
-              <switchR (statusChange)="toggleRtoU($event)"></switchR>
+              <div class="col-lg-8  col-md-12 col-sm-12 col-xs-12">
+                <input type="radio" name="certificategroup" (change)="showR=true" [checked]=true>
+                <label>R Value</label>
+                 <input type="radio" name="certificategroup" (change)="showR=false" >
+                 <label>U Value</label>
+         
               </div>
-              <div class="col-lg-6">
+              <div class="col-lg-4">
               <label> Air Film:</label>
               </div>
-              <div class="col-lg-6">
-              <switchF (statusChange)="toggleFilm($event)" ></switchF>
+              <div class="col-lg-8">
+                 <input type="radio" name="FilmGroup" (change)="film=true" [checked]=true>
+                <label>With </label>
+                 <input type="radio" name="FilmGroup" (change)="film=false" >
+                 <label>Without </label>
+           
               </div>
-              <div class="col-lg-6">
+              <div class="col-lg-4">
               <label> Units:</label>
               </div>
-              <div class="col-lg-6">
-              <switchU (statusChange)="toggleUnit($event)" ></switchU>
+              <div class="col-lg-8">
+        
               </div>
+      
           </div>
         </div>
       </div>
@@ -98,7 +142,7 @@
 <!--end-settings-->
 <!--start material info-settings-->
 <div class="col-lg-6">
-  <div class="col-lg-8 materialInfoCover">
+  <div class="col-lg-10 materialInfoCover">
     <div class="materialInfo" *ngIf="showAInfo==0">
        <h4> Element Attributes</h4>
       <div class="row">
