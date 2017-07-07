@@ -195,7 +195,11 @@ this.calculate();
   }
 // calculation for r value
    calculate(){
-    // alert("calulcate called")
+     if(this.countUp>4){
+       alert("You can only add upto 4 layers")
+     }
+     else{
+         // alert("calulcate called")
       let RSheathing = ((this.CRA1+this.CRA2+this.CRA3+this.CRA4 +this.CRE)/(this.countUp+1)/this.CRC);
       console.log(`
       CRA1=${this.CRA1}
@@ -233,7 +237,6 @@ this.calculate();
          this.zf=this.lookUp[i].zf[this.Dlarge]
        }      
      }
-     
      this.Dsmall= this.Dlarge-2*this.CTS;
      this.w=0;
      //internal calculations
@@ -278,7 +281,6 @@ this.calculate();
       this.Erw=this.Ra+this.Rb+this.R1 + (2*this.R2);
       console.log(`Erw is ${this.Erw}`);
       //calculation for dsmall
-      
       //outputs
      this.rWithoutFilm= this.Ercav*this.Erw*this.spacing/(this.w*(this.Ercav-this.Erw)+(this.spacing*this.Erw))
     console.log(`rWithoutFilm is ${this.rWithoutFilm} `)
@@ -286,15 +288,9 @@ this.calculate();
     this.rWithFilm= this.rWithoutFilm+0.68+0.17;
     this.UWithoutFilm=1/this.rWithoutFilm;
     this.UWithFilm=1/this.rWithFilm;
-    // alert(`
-    // dlarge= ${this.Dlarge}
-    // spacing=${this.spacing}
-    // CTA= ${this.CTC}
-    // CRC= ${this.CRC}
-    // length=${this.length}
-    // stud thickness= ${ this.CTS}
-    // `)
     this.check();
+     }
+   
   }
   zone:number;
   area:number;

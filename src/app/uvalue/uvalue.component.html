@@ -52,7 +52,7 @@
           <p><input type="number" [(ngModel)]="CRA1" (keyup)="calculate()"></p>
         </div>
         <div class="col-lg-6">
-          {{countUp}}
+          
           <button (click)="deleteALayer(2)" *ngIf="countUp<2">Delete Layer</button>
       </div>
       </div>
@@ -113,7 +113,7 @@
           <p><input type="number" [(ngModel)]="CRA3" (keyup)="calculate()"></p>
         </div>
         <div class="col-lg-6">
-          <button (click)="deleteALayer(4)" *ngIf="countUp<5">Delete Layer</button>
+          <button (click)="deleteALayer(4)" *ngIf="countUp<4">Delete Layer</button>
       </div>
       </div>
     </div>
@@ -140,7 +140,7 @@
           <p><input type="number" [(ngModel)]="CRA4" (keyup)="calculate()"></p>
         </div>
         <div class="col-lg-6">
-          <button (click)="deleteALayer(5)" *ngIf="countUp<6">Delete Layer</button>
+          <button (click)="deleteALayer(5)" *ngIf="countUp<5">Delete Layer</button>
       </div>
       </div>
     </div>
