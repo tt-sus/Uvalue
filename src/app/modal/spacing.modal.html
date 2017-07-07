@@ -13,7 +13,7 @@
             <div class="col-lg-6">
                 <div class="row">
             <div class="col-6">
-                <label>Spacing</label>
+                <label>Spacing (in)</label>
             </div>
             <div class="col-6">
             <input type="number" name="Spacing" formControlName="Spacing" class="form-control"  [(ngModel)]="Spacing" >
@@ -25,7 +25,7 @@
         </div>
         <div class="row">
             <div class="col-6">
-                <label>H</label>
+                <label>H (in)</label>
             </div>
             <div class="col-6">
             <input type="number" name="DLarge" formControlName="DLarge" class="form-control" [(ngModel)]="DLarge" >
@@ -37,7 +37,7 @@
         </div>
         <div class="row">
             <div class="col-6">
-                <label>Cavity Insulation (R)</label>
+                <label>Cavity Insulation (R per inch)</label>
             </div>
             <div class="col-6">
             <input type="number" formControlName="CInsulation" name="CInsulation" [(ngModel)]="CInsulation" class="form-control">
@@ -47,7 +47,7 @@
         </div>
         <div class="row">
             <div class="col-6">
-                <label>Cavity Thickness</label>
+                <label>Cavity Thickness (in)</label>
             </div>
             <div class="col-6">
             <input type="number" name="cavityThickness" formControlName="cavityThickness" [(ngModel)]="cavityThickness" class="form-control">
@@ -57,7 +57,7 @@
         </div>
         <div class="row">
             <div class="col-6">
-                <label>t</label>
+                <label>t (in)</label>
             </div>
             <div class="col-6">
             <input type="number" name="studThickness" formControlName="studThickness" [(ngModel)]="studThickness" class="form-control">
@@ -67,7 +67,7 @@
         </div>
         <div class="row">
             <div class="col-6">
-                <label>B </label>
+                <label>B (in)</label>
             </div>
             <div class="col-6">
             <input type="number" name="Length"formControlName="Length" [(ngModel)]="Length" class="form-control">
@@ -85,13 +85,13 @@
   </div>
   <div class="modal-footer">
     <button type="button" class="btn btn-secondary" (click)="c('Close click'); setValues()">Add</button>
-    <button type="button" class="btn btn-secondary" (click)="c('Close click')">Close</button>
+    <button type="button" class="btn btn-secondary" (click)="c('Close click'); reset()">Close</button>
     
   </div>
 </form>
 </ng-template>
 
-<div class="add-layer" [style.margin-top]="layerCount*10 + 'px'">
+<div class="add-layer" >
 <button class="btn btn-sm btn-outline-primary" (click)="open(content)"><i class="fa fa-pencil" aria-hidden="true"></i></button> 
 </div>
 

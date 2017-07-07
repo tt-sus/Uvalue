@@ -28,7 +28,7 @@
     </div>
     <div class="row">
         <div class="col-4">
-            <label> Thickness</label>
+            <label> Thickness (in)</label>
         </div>
         <div class="col-8">
            <input type="number" [(ngModel)]="AThickness">
@@ -36,7 +36,7 @@
     </div>
     <div class="row" *ngIf="!selected">
         <div class="col-4">
-            <label> Resistivity</label>
+            <label> Resistivity (per inch) </label>
         </div>
         <div class="col-8">
            <input type="number" [(ngModel)]="AResistivity">
@@ -44,13 +44,13 @@
     </div>
   </div>
   <div class="modal-footer">
-    <button type="button" class="btn btn-secondary" (click)="c('Close click'); passValues();">Add</button>
-    <button type="button" class="btn btn-secondary" (click)="c('Close click');reset()">Close</button>
+    <button type="button" class="btn btn-secondary" (click)="c('Close click'); passValues();reset()">Add</button>
+    <button type="button" class="btn btn-secondary" (click)="c('Close click'); reset()">Close</button>
     
   </div>
 </ng-template>
 
-<div class="add-layer"[style.margin-bottom]="count*10 + 30+ 'px'">
+<div class="add-layer"[style.margin-bottom]="count*10 + 25+ 'px'">
     <button class="btn btn-sm btn-outline-primary" (click)="open(content);" >+</button> 
 </div>
 

@@ -1,7 +1,10 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, ViewChild } from '@angular/core';
 import { UValueService } from '../Services/Uvalue.service';
 // import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 // import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
+import { SpacingModal } from '../modal/spacing.modal';
+
+import { ReferencePopover } from '../popovers/referencePop';
 
 @Component({
   selector: 'app-uvalue',
@@ -9,13 +12,15 @@ import { UValueService } from '../Services/Uvalue.service';
   styleUrls: ['./uvalue.component.css']
 })
 export class UValueComponent implements OnInit {
+  showCavity: boolean;
+  fullImagePath = '/assets/images/insulation.png'
 // Lookup Data
   lookUp:any;
   constructor(private uValueService:UValueService) {
     this.lookUp=uValueService.getData()
   }
 
-
+  
   layerType:string="";
    //display material info
   showlayer:number=1;
@@ -32,14 +37,14 @@ export class UValueComponent implements OnInit {
   CMB3=0; CTB3=0; CRB3=0;
   CMB4=0; CTB4=0; CRB4=0;
   CME=0;  CTE=0.625;  CRE=0.5;
-  CMS=0;  CTS=0.023;  CRS=0.25;
+  CMS=0;  CTS=0.023;  CRS=0.025;
   CMC=0;  CTC=6;  CRC=3.5;
   spacing:number=16; length:number=2.5; Dsmall:number=5.95; Dlarge:number=6;
-  thickness:number=0.023; showLayerInfo:boolean; showR:boolean=true; film:boolean=true
+  thickness:number=0.023; showLayerInfo:boolean; showR:boolean=false; film:boolean=true;unit:boolean=false;
   //internal inputs
   A; w; zf;Ra; Rb; 
   R1ins;R2ins;R1met;R2met;
-  R1;R2; Ercav; Erw;RSheathingFinal:number
+  R1;R2; Ercav; Erw;RSheathingFinal:number;
   //outputs
   rWithoutFilm: number;
   rWithFilm:number;
@@ -52,46 +57,44 @@ export class UValueComponent implements OnInit {
   layerB1:string;  layerB2:string;
   layerB3:string;  layerB4:string;
 //function for adding layer through modals
-  spacingModal:boolean;
-  modalOpen()
-{
-  this.spacingModal=true;
-}  layer(message:any){
+@ViewChild(SpacingModal)
+private child:SpacingModal;
+ layer(message:any){
  
     if(message.layer=='A'){
     this.countUp++;
     this.deleteA=null;
     if(this.countUp==1){
-      alert('called 1')
+      // alert('called 1')
       this.CTA1=message.thickness;
       this.CRA1=message.Resistivity;
       this.layerA1=message.name;
-       alert(this.CTA1 + "and "+ this.CRA1)
+      //  alert(this.CTA1 + "and "+ this.CRA1)
     }
     if(this.countUp==2){
-      alert('called2')
+      // alert('called2')
       this.CTA2=message.thickness;
       this.CRA2=message.Resistivity;
        this.layerA2=message.name;
-      alert(this.CTA2 + "and "+ this.CRA2)
+      // alert(this.CTA2 + "and "+ this.CRA2)
     }
     if(this.countUp==3){
-      alert('called 3')
+      // alert('called 3')
       this.CTA3=message.thickness;
       this.CRA3=message.Resistivity;
        this.layerA3=message.name;
-      alert(this.CTA3 + "and "+ this.CRA3)
+      // alert(this.CTA3 + "and "+ this.CRA3)
     }
     if(this.countUp==4){
       this.CTA4=message.thickness;
       this.CRA4=message.Resistivity;
        this.layerA4=message.name;
-      alert(this.CTA4 + "and "+ this.CRA4)
+      // alert(this.CTA4 + "and "+ this.CRA4)
     }
      
     }
    if(message.layer=='B'){
-      alert("B added")
+      // alert("B added")
       this.countDown++;
       this.deleteB=null;
       if(this.countDown==2){
@@ -115,9 +118,9 @@ export class UValueComponent implements OnInit {
   //layer count for showing added layers
   onSelectionChange(entry) {
     // clone the object for immutability
-   alert("yes")
+  //  alert("yes")
   }
-showAInfo:number;
+showAInfo:number=0;;
 showBInfo:number
    //edit layer
 showA(n){
@@ -137,7 +140,7 @@ this.showAInfo--;
 this.countUp--;
 if(n==2){
   this.CTA1=0; this.CRA1=0;
-  alert("called")
+  // alert("called")
 }
 if(n==3){
   this.CTA2=0; this.CRA2=0;
@@ -156,20 +159,21 @@ this.showBInfo--;
 this.countDown--;
 if(n==2){
   this.CTB2=0; this.CRB2=0;
-  alert(n)
+  // alert(n)
 }
 if(n==3){
   this.CTB3=0; this.CRB3=0;
-  alert(n)
+  // alert(n)
 }
 if(n==4){
   this.CTB4=0; this.CRB4=0;
-  alert(n)
+  // alert(n)
 }
 this.calculate();
 }
 //get the spacing data
   getData(message:any){
+    this.showCavity=true;
     this.spacing=message.Spacing;
     this.length=message.Length;
     this.CTC=message.cavityThick;
@@ -184,11 +188,15 @@ this.calculate();
   }
     toggleFilm(){
     this.film=!this.film;
+    this.check();
+  }
+  toggleUnit(){
+    this.unit=!this.unit;
   }
 // calculation for r value
    calculate(){
-    alert("calulcate called")
-      let RSheathing = ((this.CRA1+this.CRA2+this.CRA3+this.CRA4 +this.CRE)/5)/this.CRC;
+    // alert("calulcate called")
+      let RSheathing = ((this.CRA1+this.CRA2+this.CRA3+this.CRA4 +this.CRE)/(this.countUp+1)/this.CRC);
       console.log(`
       CRA1=${this.CRA1}
       CRA2=${this.CRA2}
@@ -199,12 +207,18 @@ this.calculate();
       `)
    //calculation for Rsheathing
      if(RSheathing<0.4){
-        this.RSheathingFinal=10; 
+       
+        if(this.CRS<1.5){
+           this.RSheathingFinal=10; 
+        }
+        else{
+           this.RSheathingFinal=20; 
+        }
        console.log( 'rsheathing is'+ this.RSheathingFinal)
      }
      else{
         this.RSheathingFinal=parseFloat(RSheathing.toFixed(1))
-        alert("this was called with"+this.RSheathingFinal)
+        // alert("this was called with"+this.RSheathingFinal)
      }
 
      for(let i=0;i<this.lookUp.length;i++){
@@ -272,18 +286,112 @@ this.calculate();
     this.rWithFilm= this.rWithoutFilm+0.68+0.17;
     this.UWithoutFilm=1/this.rWithoutFilm;
     this.UWithFilm=1/this.rWithFilm;
-    alert(`
-    dlarge= ${this.Dlarge}
-    spacing=${this.spacing}
-    CTA= ${this.CTC}
-    CRC= ${this.CRC}
-    length=${this.length}
-    stud thickness= ${ this.CTS}
-    `)
+    // alert(`
+    // dlarge= ${this.Dlarge}
+    // spacing=${this.spacing}
+    // CTA= ${this.CTC}
+    // CRC= ${this.CRC}
+    // length=${this.length}
+    // stud thickness= ${ this.CTS}
+    // `)
+    this.check();
+  }
+  zone:number;
+  area:number;
+  //zone data
+ zoneData:any=[
+  {
+    "Zone": "1",
+    "NonRes": "0.124",
+    "Res": "0.124",
+    "Semiheated": "0.352",
+    "": ""
+  },
+  {
+    "Zone": "2",
+    "NonRes": "0.084",
+    "Res": "0.064",
+    "Semiheated": "0.124",
+    "": ""
+  },
+  {
+    "Zone": "3",
+    "NonRes": "0.077",
+    "Res": "0.064",
+    "Semiheated": "0.124",
+    "": ""
+  },
+  {
+    "Zone": "4",
+    "NonRes": "0.064",
+    "Res": "0.064",
+    "Semiheated": "0.124",
+    "": ""
+  },
+  {
+    "Zone": "5",
+    "NonRes": "0.055",
+    "Res": "0.055",
+    "Semiheated": "0.084",
+    "": ""
+  },
+  {
+    "Zone": "6",
+    "NonRes": "0.049",
+    "Res": "0.049",
+    "Semiheated": "0.084",
+    "": ""
+  },
+  {
+    "Zone": "7",
+    "NonRes": "0.049",
+    "Res": "0.042",
+    "Semiheated": "0.064",
+    "": ""
+  },
+  {
+    "Zone": "8",
+    "NonRes": "0.037",
+    "Res": "0.037",
+    "Semiheated": "0.064",
+    "": ""
+  }
+];
+zoneChange(n){
+  this.zone=n;
+}
+areaChange(n){
+  this.area=n;
+}
+compliant:boolean;
+   uVal:number;
+  check(){
+ 
+   
+    for(let i=0;i<this.zoneData.length;i++){
+        if(this.zoneData[i].Zone==this.zone){
+          if(this.area==1){
+              this.uVal=this.zoneData[i].NonRes;
+
+          }
+           if(this.area==2){
+              this.uVal=this.zoneData[i].Res;
+            
+          }
+          else{
+            this.uVal=this.zoneData[i].Semiheated;
+                
+          }
+        }
+    }
+     
+    // alert(this.uVal)
   }
   ngOnInit() {
+  
     this.calculate()
   }
 
 
 }
+

@@ -45,7 +45,7 @@ export class ModalComponent{
   addMaterial:EventEmitter<number> = new EventEmitter();
   
 getName(){
-  alert("yo")
+  // alert("yo")
 }
   passValues(){
       this.count++;
@@ -63,13 +63,13 @@ getName(){
   
   }
   reset(){
-       this.selected=false;
-    this.selectedValue=null;
-    alert()
+    this.AThickness=null;
+    this.AResistivity=null;
+    // alert()
   
   }
    toNumber(layer){
-      alert(layer)
+      // alert(layer)
     this.selectedValue = +this.selectedValue;
     console.log(this.selectedValue);
     this.selected=true

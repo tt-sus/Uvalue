@@ -38,10 +38,11 @@ inputsForm:FormGroup;
 
 selectedInput:string;
 Spacing:number; 
-DLarge:number; Length:number;CInsulation:number;cavityThickness:number; studThickness:number;
+DLarge:number; Length:number=3;CInsulation:number;cavityThickness:number; studThickness:number=0.023;
 
 @Input()
 openMod:boolean;
+
 
 @Output()
 passData:EventEmitter<Object> = new EventEmitter();
@@ -62,6 +63,9 @@ checkDLarge(control:FormControl){
   else{
     return {validD:true}
   }
+}
+reset(){
+
 }
 ngOnInit(): void {
   // binding form inputs

@@ -19,6 +19,7 @@ import { SwitchFilmComponent } from './switch/switchFilm.component';
 import { SwitchUnitComponent } from './switch/switchUnit.component';
 import { SharedComponent } from './shared/shared.component';
 import { RValueService } from './Services/RValueService';
+import { ReferencePopover } from './popovers/referencePop';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { RValueService } from './Services/RValueService';
      SwitchValueComponent,
      SwitchFilmComponent,
      SwitchUnitComponent,
-     SharedComponent
+     SharedComponent,
+     ReferencePopover
   ],
   imports: [
     BrowserModule,

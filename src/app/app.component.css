@@ -44,3 +44,8 @@
 .hamburger span::after {
   bottom: 8px;
 }
+.navbar-right{
+  float: right;
+    position: absolute;
+    right: 400px;
+}

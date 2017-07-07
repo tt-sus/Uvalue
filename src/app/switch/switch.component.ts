@@ -249,8 +249,8 @@ export class SwitchValueComponent {
     @Input() status: boolean = false; 
     @Output() statusChange: EventEmitter<boolean> = new EventEmitter<boolean>();
 
-    @Input() onText: string = "U Value";
-    @Input() offText: string = "R Value";
+    @Input() onText: string = "R Value";
+    @Input() offText: string = "U Value";
     @Input() onColor = "bootstrap-switch-info";
     @Input() offColor = "bootstrap-switch-default";
     @Input() size = "mini";

@@ -12,58 +12,58 @@ input[type=number]::-webkit-outer-spin-button {
     margin: 0; 
  
 }
-.legs{position:relative}
-.left{height:100px; width:20px;margin-left:0px; display:inline-block; background-color:black;position:relative; margin-left: 50px;}
-.right{height:100px; width:20px;margin-left:150px; display:inline-block;background-color:black}
+.legs{position:relative;margin-bottom: 4px;}
+.left{height:100px; width:8px;margin-left:0px; display:inline-block; background-color:#0275D8;position:relative; margin-left: 100px;}
+.right{height:100px; width:8px;margin-left:150px; display:inline-block;    background-color: #0275D8;}
 .top-1{
      height:15px !important;
     width:100%;
-    background-color:#ccc !important;
+    background-color:#ccc;
 }
 .top{
     height:25px;
     width:85%;
-    background-color:coral;
+    background-color:#ccc;
     position: relative;
     border-bottom:1px solid #fff;
     cursor:pointer;
 }
 .edit{
-    border:2px solid #000;
+    background: coral !important;
 }
 .bottom{
     height:15px;
     width:85%;
-     background-color:coral;
+     background-color:#ccc;
      margin-top: -5px;
      border-top:1px solid #fff;
      cursor:pointer;
 }
 .l-top-leg{
     position:absolute;
-     height:20px;
+     height:8px;
     width:80px;
-    background-color:black
+    background-color:#0275D8
 }
 .l-bottom-leg{
     position:absolute;
-     height:20px;
+     height:8px;
     width:80px;
-    background-color:black;
-    bottom:0;
+    background-color:#0275D8;
+        bottom: -7px;
 }
 .r-top-leg{
     position:absolute;
-     height:20px;
+     height:8px;
     width:80px;
-    background-color:black
+    background-color:#0275D8
 }
 .r-bottom-leg{
     position:absolute;
-     height:20px;
+     height:8px;
     width:80px;
-    background-color:black;
-    bottom:5px;
+    background-color:#0275D8;
+    bottom:0px;
 }
 .bottom-hr {
     margin-top: 20px;
@@ -111,7 +111,7 @@ input[type=number]::-webkit-outer-spin-button {
 }
 .box{
   
-    margin-top:20px;
+    margin-top:30px;
 }
 .inner-box{
       border:1px solid #ccc;
@@ -119,15 +119,19 @@ input[type=number]::-webkit-outer-spin-button {
 }
 .image{
     padding-left: 40px;
-        padding-right: 170px;
+    
 }
 .materialInfoCover{
-    padding-right:90px;
-    padding-top: 100px;
+       padding-right: 50px;
+    padding-top: 50px;
 }
 .materialInfo{
     background-color: #F7F7F7;
         padding: 20px;
+        width:100%;
+}
+.materialInfo label{
+    margin-bottom: 1.5rem;
 }
 .result{
     position: absolute;
@@ -148,13 +152,15 @@ input[type=number]{
 .settings{
     background: #F7F7F7;
     padding: 15px;
-    height: 226px;
+    height: 234px;
+        padding-top: 50px;
+           width: 569px;
 }
 .settings-box{
-    padding-top: 80px;
+
 }
 .settings label {
-      font-size: 14px;
+    
     margin-bottom: 30px;
     margin-right: 30px;
 }
@@ -170,7 +176,33 @@ input[type=number]{
 .modal-layer{
     text-align: center;
 }
+.check-zone label,.check-area label{
+    margin-right: 15px;
+}
+.compliance{
+    margin-top:30px;
+}
+.check-area label:first-child{
+    margin-right:76px;
+}
+.legs{
+    background-size: cover !important;
+    /* padding-right: 40px; */
+    margin-right: 92px;
+}
+.result p{
+    margin-top:30px;
+}
+ @media only screen and (max-width: 1556px){
+    .right{
+        margin-left:120px !important;
+    }
+ }
+
  @media only screen and (max-width: 1366px){
+     .result {
+            left: 108px;
+     }
     .materialInfo input{
         width:100%;
     }
