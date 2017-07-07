@@ -65,6 +65,9 @@ getName(){
   reset(){
     this.AThickness=null;
     this.AResistivity=null;
+       this.selected=false;
+    this.selectedValue=null;
+  
     // alert()
   
   }

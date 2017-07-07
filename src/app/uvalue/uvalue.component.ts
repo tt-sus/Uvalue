@@ -194,12 +194,9 @@ this.calculate();
     this.unit=!this.unit;
   }
 // calculation for r value
-   calculate(){
-     if(this.countUp>4){
-       alert("You can only add upto 4 layers")
-     }
-     else{
-         // alert("calulcate called")
+  calculateResult()
+  {
+        // alert("calulcate called")
       let RSheathing = ((this.CRA1+this.CRA2+this.CRA3+this.CRA4 +this.CRE)/(this.countUp+1)/this.CRC);
       console.log(`
       CRA1=${this.CRA1}
@@ -289,8 +286,9 @@ this.calculate();
     this.UWithoutFilm=1/this.rWithoutFilm;
     this.UWithFilm=1/this.rWithFilm;
     this.check();
-     }
-   
+  }   
+  calculate(){
+     this.calculateResult()
   }
   zone:number;
   area:number;
@@ -368,11 +366,9 @@ compliant:boolean;
         if(this.zoneData[i].Zone==this.zone){
           if(this.area==1){
               this.uVal=this.zoneData[i].NonRes;
-
           }
            if(this.area==2){
               this.uVal=this.zoneData[i].Res;
-            
           }
           else{
             this.uVal=this.zoneData[i].Semiheated;
