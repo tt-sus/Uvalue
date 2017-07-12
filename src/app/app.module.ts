@@ -20,6 +20,9 @@ import { SwitchUnitComponent } from './switch/switchUnit.component';
 import { SharedComponent } from './shared/shared.component';
 import { RValueService } from './Services/RValueService';
 import { ReferencePopover } from './popovers/referencePop';
+import { EditModalComponent } from './modal/edit-modal.component';
+import { EditInsideModal } from './modal/edit-inside-modal';
+
 
 @NgModule({
   declarations: [
@@ -33,7 +36,8 @@ import { ReferencePopover } from './popovers/referencePop';
      SwitchFilmComponent,
      SwitchUnitComponent,
      SharedComponent,
-     ReferencePopover
+     ReferencePopover,
+     EditModalComponent,EditInsideModal
   ],
   imports: [
     BrowserModule,

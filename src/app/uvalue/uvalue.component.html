@@ -4,14 +4,8 @@
   <div class="offset-lg-2 col-lg-4">
     <div class="materialInfoCover">
       <div class="materialInfo" *ngIf="showAInfo==0">
-       <h4> Material Properties</h4>
+       <h4> Exterior Sheathing</h4>
       <div class="row">
-        <div class="col-lg-6">
-          <label>Material Position </label>
-        </div>
-        <div class="col-lg-6">
-          <p> Outside</p>
-        </div>
         <div class="col-lg-6">
           <label>Thickness  (in)</label>
         </div>
@@ -27,17 +21,12 @@
       </div>
     </div>
     <div class="materialInfo" *ngIf="showAInfo==1">
-       <h4> Material Properties</h4>
       <div class="row">
         <div class="col-lg-6">
-          <label>Material Position </label>
-        </div>
-        <div class="col-lg-6">
-          <p> Outside  </p>
-        </div>
-        <div class="clearfix"></div>
-        <div class="col-lg-12">
               <h4>{{layerA1}}</h4>
+        </div>
+         <div class="col-lg-6">
+           <edit-modal (passLayer)="layerEd($event)" [count]="countUp" [style.top]="0"></edit-modal>
         </div>
         <div class="col-lg-6">
           <label>Thickness  (in)</label>
@@ -58,18 +47,13 @@
       </div>
     </div>
     <div class="materialInfo" *ngIf="showAInfo==2">
-       <h4> Material Properties</h4>
       <div class="row">
-      <div class="col-lg-6">
-        <label>Material Position </label>
-      </div>
-      <div class="col-lg-6">
-        <p> Outside </p>
-      </div>
-      <div class="clearfix"></div>
-     <div class="col-lg-12">
+     <div class="col-lg-6">
           <h4>{{layerA2}}</h4>
      </div>
+       <div class="col-lg-6">
+          <edit-modal (passLayer)="layerEd($event)" [count]="countUp" [style.top]="0"></edit-modal>
+        </div>
       <div class="col-lg-6">
         <label>Thickness  (in)</label>
       </div>
@@ -88,17 +72,12 @@
       </div>
     </div>
     <div class="materialInfo" *ngIf="showAInfo==3">
-       <h4> Material Properties</h4>
       <div class="row">
         <div class="col-lg-6">
-          <label>Material Position </label>
-        </div>
-        <div class="col-lg-6">
-          <p> Outside</p>
-        </div>
-         <div class="clearfix"></div>
-        <div class="col-lg-12">
               <h4>{{layerA3}}</h4>
+        </div>
+          <div class="col-lg-6">
+            <edit-modal (passLayer)="layerEd($event)" [count]="countUp" [style.top]="0"></edit-modal>
         </div>
         <div class="col-lg-6">
           <label>Thickness  (in)</label>
@@ -118,15 +97,15 @@
       </div>
     </div>
     <div class="materialInfo" *ngIf="showAInfo==4">
-       <h4> Material Properties</h4>
+ 
       <div class="row">
         <div class="col-lg-6">
-          <label>Material Position </label>
-        </div>
-        <div class="col-lg-6">
-          <p> Outside</p>
-        </div>
         <h4>{{layerA4}}</h4>
+        </div>
+       <div class="col-lg-6">
+            <edit-modal (passLayer)="layerEd($event)" [count]="countUp" [style.top]="0"></edit-modal>
+        </div>
+      
         <div class="col-lg-6">
           <label>Thickness  (in)</label>
         </div>
@@ -145,17 +124,13 @@
       </div>
     </div>
      <div class="materialInfo" *ngIf="showAInfo==5">
-       <h4> Material Properties</h4>
+ 
       <div class="row">
         <div class="col-lg-6">
-          <label>Material Position </label>
-        </div>
-        <div class="col-lg-6">
-          <p>A (Outside) unknown</p>
-        </div>
-         <div class="clearfix"></div>
-        <div class="col-lg-12">
               <h4>{{layerType}}</h4>
+        </div>
+         <div class="col-lg-6">
+            <edit-modal (passLayer)="layerEd($event)" [count]="countUp" [style.top]="0"></edit-modal>
         </div>
         <div class="col-lg-6">
           <label>Thickness  (in)</label>
@@ -174,15 +149,10 @@
       </div>
       </div>
     </div>
+    <!--end layer A -->
     <div class="materialInfo" *ngIf="showBInfo==1">
-       <h4> Material Properties</h4>
+        <h4> Interior Sheathing</h4>
       <div class="row">
-        <div class="col-lg-6">
-          <label>Material Position </label>
-        </div>
-        <div class="col-lg-6">
-          <p>Inside</p>
-        </div>
         <div class="col-lg-6">
           <label>Thickness  (in)</label>
         </div>
@@ -199,17 +169,12 @@
       </div> 
     </div>
     <div class="materialInfo" *ngIf="showBInfo==2">
-       <h4> Material Properties</h4>
       <div class="row">
         <div class="col-lg-6">
-          <label>Material Position </label>
-        </div>
-        <div class="col-lg-6">
-          <p>Insid</p>
-        </div>
-         <div class="clearfix"></div>
-        <div class="col-lg-12">
               <h4>{{layerB1}}</h4>
+        </div>
+           <div class="col-lg-6">
+            <edit-i-modal (passLayer)="layerEditIn($event)" [style.top]="0"></edit-i-modal>
         </div>
         <div class="col-lg-6">
           <label>Thickness (in)</label>
@@ -229,17 +194,14 @@
       </div>
     </div>
     <div class="materialInfo" *ngIf="showBInfo==3">
-       <h4> Material Properties</h4>
+
       <div class="row">
+    
         <div class="col-lg-6">
-          <label>Material Position </label>
-        </div>
-        <div class="col-lg-6">
-          <p>Inside</p>
-        </div>
-         <div class="clearfix"></div>
-        <div class="col-lg-12">
               <h4>{{layerB2}}</h4>
+        </div>
+          <div class="col-lg-6">
+            <edit-i-modal (passLayer)="layerEditIn($event)" [style.top]="0"></edit-i-modal>
         </div>
         <div class="col-lg-6">
           <label>Thickness </label>
@@ -260,17 +222,13 @@
       </div>
     </div>
     <div class="materialInfo" *ngIf="showBInfo==4">
-       <h4> Material Properties</h4>
+    
       <div class="row">
         <div class="col-lg-6">
-          <label>Material Position </label>
-        </div>
-        <div class="col-lg-6">
-          <p>Inside</p>
-        </div>
-         <div class="clearfix"></div>
-        <div class="col-lg-12">
               <h4>{{layerB3}}</h4>
+        </div>
+          <div class="col-lg-6">
+            <edit-i-modal (passLayer)="layerEditIn($event)" [style.top]="0"></edit-i-modal>
         </div>
         <div class="col-lg-6">
           <label>Thickness </label>
@@ -421,8 +379,8 @@
       <h2 *ngIf="!showR && film && !unit">{{1/rWithFilm | number : '1.3-3'}} </h2>
       <h2 *ngIf="!showR && !film &&unit">{{1/rWithoutFilm*5.678 | number : '1.3-3'}} </h2>
       <h2 *ngIf="!showR && film && unit">{{1/rWithFilm*5.678 | number : '1.3-3'}} </h2>
-      <p *ngIf="UWithFilm > uVal && !showR"> Compliant with ASHRAE 2013 : NO</p>
-      <p *ngIf="UWithFilm < uVal && !showR">Compliant with ASHRAE 2013 : Yes</p>
+      <p *ngIf="UWithFilm > uVal && !showR"> Compliant with ASHRAE 90.1 - 2013 : <span class="no"> <b>NO</b></span><br> Required U value is {{uVal}}</p>
+      <p *ngIf="UWithFilm < uVal && !showR">Compliant with ASHRAE 90.1 - 2013 : <span class="yes"><b>YES</b><br></span> Required U value is {{uVal}}</p>
       </div>
       
     </div>

@@ -1,7 +1,7 @@
 <ng-template #content let-c="close" let-d="dismiss">
   <div class="modal-header">
-    <h4 class="modal-title">Add Element (Inside)</h4>
-    <button type="button" class="close" aria-label="Close" (click)="d('Cross click');;reset()">
+    <h4 class="modal-title">Add Element</h4>
+    <button type="button" class="close" aria-label="Close" (click)="d('Cross click');reset()">
       <span aria-hidden="true">&times;</span>
     </button>
   </div>
@@ -12,13 +12,13 @@
             <label> From Template</label>
         </div>
         <div class="col-8">
-            <select [(ngModel)]="selectedValue"(ngModelChange)="toNumber()">
-                <option *ngFor="let layer of rValues" [ngValue]="layer">{{layer.Material}}</option>
+            <select [(ngModel)]="selectedlayer "(ngModelChange)="toNumber($event)">
+                <option *ngFor="let layer of rValues " [ngValue]="layer">{{layer.Material}}</option>
             </select>
         </div>
     </div>
     <h3 *ngIf="!selected">OR</h3>
-     <div class="row" *ngIf="!selected"> 
+    <div class="row" *ngIf="!selected">
         <div class="col-4">
             <label> Name</label>
         </div>
@@ -36,7 +36,7 @@
     </div>
     <div class="row" *ngIf="!selected">
         <div class="col-4">
-            <label> Resistivity (per inch)</label>
+            <label> Resistivity (per inch) </label>
         </div>
         <div class="col-8">
            <input type="number" [(ngModel)]="AResistivity">
@@ -44,15 +44,14 @@
     </div>
   </div>
   <div class="modal-footer">
-    <button type="button" class="btn btn-secondary" (click)="c('Close click'); passValues();">Add</button>
-    <button type="button" class="btn btn-secondary" (click)="c('Close click');reset()">Close</button>
+    <button type="button" class="btn btn-secondary" (click)="c('Close click'); passValues();reset()">Add</button>
+    <button type="button" class="btn btn-secondary" (click)="c('Close click'); reset()">Close</button>
     
   </div>
 </ng-template>
 
-<div class="add-layer layer-B">
-<button class="btn btn-sm btn-outline-primary" (click)="open(content)" >+</button> 
-
+<div class="add-layer">
+    <button class="btn btn-sm btn-outline-primary" (click)="open(content);" ><i class="fa fa-pencil" aria-hidden="true"></i></button> 
 </div>
 
 

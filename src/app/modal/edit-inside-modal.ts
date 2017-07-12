@@ -3,10 +3,10 @@ import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
 import { RValueService } from '../Services/RValueService';
 
 @Component({
-    selector:'modal-B',
-    templateUrl: './modal.component.html',
+    selector:'edit-i-modal',
+    templateUrl: './edit-inside-modal.html',
       styles: [`
-     .add-layer{position:absolute; bottom:55px;}
+     .add-layer{position:absolute;}
       input[type=number]{
       margin-bottom: 10px;
       }
@@ -32,7 +32,7 @@ import { RValueService } from '../Services/RValueService';
      `]
 })
 
-export class Modal_BComponent{
+export class EditInsideModal{
   closeResult: string;
   rValues:any;  layerName:string;
   constructor(private modalService: NgbModal,private rValueService:RValueService) {
@@ -78,7 +78,7 @@ export class Modal_BComponent{
       this.addMaterial.emit();
     }
     this.selected=false;
-    this.selectedlayer=null;
+    this.selectedValue=null;
     this.AResistivity=null;
     this.AThickness=null;
   }

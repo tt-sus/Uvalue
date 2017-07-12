@@ -1,5 +1,5 @@
 .add-layer{
-    margin-top:70px;
+
 
 }
 input[type=number]{
@@ -16,6 +16,7 @@ input[type=number]::-webkit-outer-spin-button {
 .add-layer button{
     border-radius: 50%;
 }
+
  @media only screen and (max-width: 770px){
     .add-layer{
     margin-top:10px;

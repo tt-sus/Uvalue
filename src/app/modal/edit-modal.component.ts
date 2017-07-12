@@ -4,12 +4,12 @@ import { RValueService } from '../Services/RValueService';
 
 
 @Component({
-    selector:'app-modal',
-    templateUrl: './modal.component.html',
+    selector:'edit-modal',
+    templateUrl: './editmodal.component.html',
      styleUrls: ['./modal.component.css']
 })
 
-export class ModalComponent{
+export class EditModalComponent{
   @ViewChild('layer') input; 
   @Input()
   count:number=1;
@@ -65,7 +65,7 @@ getName(){
       this.addMaterial.emit();
     }
     this.selected=false;
-    this.selectedlayer=null;
+    this.selectedValue=null;
   
   }
   reset(){

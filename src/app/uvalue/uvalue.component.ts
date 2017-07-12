@@ -5,6 +5,7 @@ import { UValueService } from '../Services/Uvalue.service';
 import { SpacingModal } from '../modal/spacing.modal';
 
 import { ReferencePopover } from '../popovers/referencePop';
+import { RValueService } from '../Services/RValueService';
 
 @Component({
   selector: 'app-uvalue',
@@ -16,8 +17,12 @@ export class UValueComponent implements OnInit {
   fullImagePath = '/assets/images/insulation.png'
 // Lookup Data
   lookUp:any;
-  constructor(private uValueService:UValueService) {
+  rValues:any;
+  selectedValue:number;
+  selected:boolean=false;
+  constructor(private uValueService:UValueService,private rValueService:RValueService) {
     this.lookUp=uValueService.getData()
+    this.rValues=this.rValueService.getData();
   }
 
   
@@ -42,6 +47,7 @@ export class UValueComponent implements OnInit {
   spacing:number=16; length:number=2.5; Dsmall:number=5.95; Dlarge:number=6;
   thickness:number=0.023; showLayerInfo:boolean; showR:boolean=false; film:boolean=true;unit:boolean=false;
   //internal inputs
+  
   A; w; zf;Ra; Rb; 
   R1ins;R2ins;R1met;R2met;
   R1;R2; Ercav; Erw;RSheathingFinal:number;
@@ -59,10 +65,84 @@ export class UValueComponent implements OnInit {
 //function for adding layer through modals
 @ViewChild(SpacingModal)
 private child:SpacingModal;
+
+
  layer(message:any){
  
     if(message.layer=='A'){
     this.countUp++;
+    if(this.countUp>=5){
+      alert("You can only add upto 4 layers")
+      return;
+    }
+    else{
+      this.deleteA=null;
+    if(this.countUp==1){
+      // alert('called 1')
+      this.CTA1=message.thickness;
+      this.CRA1=message.Resistivity;
+      this.layerA1=message.name;
+      //  alert(this.CTA1 + "and "+ this.CRA1)
+    }
+    if(this.countUp==2){
+      // alert('called2')
+      this.CTA2=message.thickness;
+      this.CRA2=message.Resistivity;
+       this.layerA2=message.name;
+      // alert(this.CTA2 + "and "+ this.CRA2)
+    }
+    if(this.countUp==3){
+      // alert('called 3')
+      this.CTA3=message.thickness;
+      this.CRA3=message.Resistivity;
+       this.layerA3=message.name;
+      // alert(this.CTA3 + "and "+ this.CRA3)
+    }
+    if(this.countUp==4){
+      this.CTA4=message.thickness;
+      this.CRA4=message.Resistivity;
+       this.layerA4=message.name;
+      // alert(this.CTA4 + "and "+ this.CRA4)
+    }
+    }
+    
+     
+    }
+   if(message.layer=='B'){
+      if(this.countDown>=4){
+      alert("You can only add upto 4 layers")
+      return;
+    }
+    else{
+     this.countDown++;
+      this.deleteB=null;
+      if(this.countDown==2){
+        this.CTB2=message.thickness;
+        this.CRB2=message.Resistivity;
+        this.layerB1=message.name
+          
+      }
+      if(this.countDown==3){
+        this.CTB3=message.thickness;
+        this.CRB3=message.Resistivity;
+        this.layerB2=message.name
+    
+      }
+       if(this.countDown==4){
+        this.CTB4=message.thickness;
+        this.CRB4=message.Resistivity;
+        this.layerB3=message.name
+      
+      }
+    }
+    
+    }
+   this.calculate()
+  }
+  layerEd(message:any){
+
+     if(message.layer=='A'){
+       
     this.deleteA=null;
     if(this.countUp==1){
       // alert('called 1')
@@ -92,10 +172,14 @@ private child:SpacingModal;
       // alert(this.CTA4 + "and "+ this.CRA4)
     }
      
-    }
+     }
+   this.calculate()
+  
+}
+layerEditIn(message:any){
+  
    if(message.layer=='B'){
-      // alert("B added")
-      this.countDown++;
+      // alert("B added"
       this.deleteB=null;
       if(this.countDown==2){
         this.CTB2=message.thickness;
@@ -114,12 +198,8 @@ private child:SpacingModal;
       }
     }
    this.calculate()
-  }
+}
   //layer count for showing added layers
-  onSelectionChange(entry) {
-    // clone the object for immutability
-  //  alert("yes")
-  }
 showAInfo:number=0;;
 showBInfo:number
    //edit layer
@@ -135,6 +215,7 @@ showB(n){
 deleteB:number; deleteA:number;
 
 deleteALayer(n){
+  this.selected=false;
 this.deleteA=n;
 this.showAInfo--;
 this.countUp--;
@@ -159,15 +240,15 @@ this.showBInfo--;
 this.countDown--;
 if(n==2){
   this.CTB2=0; this.CRB2=0;
-  // alert(n)
+
 }
 if(n==3){
   this.CTB3=0; this.CRB3=0;
-  // alert(n)
+ 
 }
 if(n==4){
   this.CTB4=0; this.CRB4=0;
-  // alert(n)
+
 }
 this.calculate();
 }
@@ -370,7 +451,7 @@ compliant:boolean;
            if(this.area==2){
               this.uVal=this.zoneData[i].Res;
           }
-          else{
+          else if(this.area==3){
             this.uVal=this.zoneData[i].Semiheated;
                 
           }

@@ -21,7 +21,7 @@ input[type=number]::-webkit-outer-spin-button {
     background-color:#ccc;
 }
 .top{
-    height:25px;
+    height:20px;
     width:85%;
     background-color:#ccc;
     position: relative;
@@ -193,9 +193,32 @@ input[type=number]{
 .result p{
     margin-top:30px;
 }
- @media only screen and (max-width: 1556px){
+.labels{
+    padding-top:70px;
+}
+.materialInfo h4{
+    font-size: 16px;
+    margin-bottom: 25px;
+}
+.no{
+    color:coral;
+}
+.yes{
+    color:#0275D8
+}
+.materialInfo p{
+ margin-bottom:5px;
+}
+ @media only screen and (max-width: 1558px){
     .right{
         margin-left:120px !important;
+    }
+    .settings{
+        height:100%;
+        width:437px! important;
+    }
+    .materialInfo input{
+        width:100%;
     }
  }
 

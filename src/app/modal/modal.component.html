@@ -1,6 +1,6 @@
 <ng-template #content let-c="close" let-d="dismiss">
   <div class="modal-header">
-    <h4 class="modal-title">Add Element (Outside)</h4>
+    <h4 class="modal-title">Add Element</h4>
     <button type="button" class="close" aria-label="Close" (click)="d('Cross click');reset()">
       <span aria-hidden="true">&times;</span>
     </button>
@@ -12,8 +12,8 @@
             <label> From Template</label>
         </div>
         <div class="col-8">
-            <select [(ngModel)]="selectedValue "(ngModelChange)="toNumber($event)">
-                <option *ngFor="let layer of rValues" [ngValue]="layer.rvalue">{{layer.Material}}</option>
+            <select [(ngModel)]="selectedlayer "(ngModelChange)="toNumber($event)">
+                <option *ngFor="let layer of rValues " [ngValue]="layer">{{layer.Material}}</option>
             </select>
         </div>
     </div>
