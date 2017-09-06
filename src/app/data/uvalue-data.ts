@@ -145,5 +145,9 @@ export  const lookUp=[
 		{
 			"Material": "Vermiculite",
 			"rvalue": 2.13
+		},
+		{
+			"Material": "Steel Studs",
+			"rvalue": 0.038
 		}
   ];

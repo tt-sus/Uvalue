@@ -55,7 +55,7 @@ import {
   transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
   background-color:#fff;
   width: 190px;
-  margin-bottom:10px;
+    margin-bottom: 20px;
 }
 .bootstrap-switch .bootstrap-switch-container {
   display: inline-block;
@@ -249,8 +249,8 @@ export class SwitchValueComponent {
     @Input() status: boolean = false; 
     @Output() statusChange: EventEmitter<boolean> = new EventEmitter<boolean>();
 
-    @Input() onText: string = "U Value";
-    @Input() offText: string = "R Value";
+    @Input() onText: string = "R Value";
+    @Input() offText: string = "U Value";
     @Input() onColor = "bootstrap-switch-info";
     @Input() offColor = "bootstrap-switch-default";
     @Input() size = "mini";

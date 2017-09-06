@@ -198,8 +198,8 @@ import {
   `],
    animations: [
         trigger('statusChange', [
-            state('false', style({ transform: 'translateX(-53.333%)' })),
-            state('true', style({ transform: 'translateX(80%)' })),
+            state('false', style({ transform: 'translateX(-57.333%)' })),
+            state('true', style({ transform: 'translateX(61%)' })),
             transition('true <=> false', animate('200ms'))
         ])
     ]
@@ -230,8 +230,8 @@ export class SwitchFilmComponent {
     @Input() status: boolean = false; 
     @Output() statusChange: EventEmitter<boolean> = new EventEmitter<boolean>();
 
-    @Input() onText: string = "With";
-    @Input() offText: string = "Without  ";
+    @Input() onText: string = "Without";
+    @Input() offText: string = "With  ";
     @Input() onColor = "bootstrap-switch-info";
     @Input() offColor = "bootstrap-switch-default";
     @Input() size = "mini";
