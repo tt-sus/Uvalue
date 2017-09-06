@@ -44,8 +44,18 @@
 .hamburger span::after {
   bottom: 8px;
 }
-.navbar-right{
-  float: right;
-    position: absolute;
-    right: 400px;
+.nav-item {
+  margin-top: 5px;
+  margin-bottom: 5px;
+  color: #777;
+}
+.navbar-toggler-right {
+  position: absolute;
+  right: 1rem;
+}
+.navbar-brand{
+  margin-right:0px !important;
+  font-size: 14px;
+  color: #777;
+  
 }

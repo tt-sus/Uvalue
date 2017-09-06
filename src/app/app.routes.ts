@@ -3,7 +3,7 @@ import { AppComponent } from './app.component';
 
 
 export const ToolRoutes=[
-    {path: "uvalue", component:UValueComponent,pathMatch: 'full'},
+    {path: "", component:UValueComponent,pathMatch: 'full'},
    
 
 ]
